@@ -16,8 +16,8 @@ export default function TheoryScreen() {
       <div className="h-[100dvh] overflow-y-auto bg-sky-50">
         {/* 헤더 */}
         <div
-          className="px-5 py-4 shadow-sm sticky top-0 z-10 flex items-center gap-3"
-          style={{ backgroundColor: chapter.color + '15', borderBottom: `2px solid ${chapter.color}30` }}
+          className="bg-white px-5 py-4 shadow-sm sticky top-0 z-10 flex items-center gap-3"
+          style={{ borderBottom: `3px solid ${chapter.color}` }}
         >
           <button
             onClick={() => navigate('/theory')}

@@ -150,11 +150,11 @@ export default function QuizScreen() {
           {settings.showBilingual ? (
             <>
               <p className="text-sm font-semibold text-slate-800 leading-relaxed">
-                {question.englishQuestion}
+                {question.koreanQuestion || question.englishQuestion}
               </p>
-              {question.koreanQuestion && (
-                <p className="text-sm text-slate-600 leading-relaxed mt-3 pt-3 border-t border-slate-100">
-                  {question.koreanQuestion}
+              {question.englishQuestion && question.koreanQuestion && (
+                <p className="text-xs text-slate-400 leading-relaxed mt-3 pt-3 border-t border-slate-100">
+                  {question.englishQuestion}
                 </p>
               )}
             </>

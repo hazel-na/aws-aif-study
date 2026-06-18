@@ -1,0 +1,18 @@
+{
+  "name": "AWS AIF 합격앱",
+  "short_name": "AIF 합격앱",
+  "description": "AWS AI Practitioner AIF-C01 자격증 합격을 위한 문제은행 & 이론 학습 앱",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0EA5E9",
+  "theme_color": "#0EA5E9",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

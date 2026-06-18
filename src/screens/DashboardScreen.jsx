@@ -40,21 +40,21 @@ export default function DashboardScreen() {
   return (
     <div className="h-[100dvh] overflow-y-auto bg-sky-50">
       {/* 헤더 */}
-      <div className="bg-white px-5 pt-4 pb-4 shadow-sm sticky top-0 z-10">
+      <div className="bg-white px-5 pt-3 pb-3 shadow-sm sticky top-0 z-10">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-lg font-extrabold text-slate-800">AWS AIF-C01</h1>
-            <p className="text-xs text-slate-500">AI Practitioner 합격 앱</p>
+            <h1 className="text-base font-extrabold text-slate-800">AWS AIF-C01</h1>
+            <p className="text-xs text-slate-400">AI Practitioner 합격 앱</p>
           </div>
-          <AuthButton />
-        </div>
-        <div className="mt-2 flex items-center justify-end">
-          <button
-            onClick={() => navigate('/theory')}
-            className="flex items-center gap-1.5 bg-sky-100 text-sky-700 font-bold text-xs px-3 py-2 rounded-xl active:scale-95 transition-transform"
-          >
-            📖 이론 학습
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => navigate('/theory')}
+              className="flex items-center gap-1 bg-sky-100 text-sky-700 font-bold text-xs px-3 py-1.5 rounded-full active:scale-95 transition-transform"
+            >
+              📖 이론
+            </button>
+            <AuthButton />
+          </div>
         </div>
       </div>
 
@@ -201,7 +201,8 @@ export default function DashboardScreen() {
 
         {/* MADE BY */}
         <div className="pb-6 flex flex-col items-center gap-1">
-          <p className="text-xs text-slate-400">MADE BY. 나현진</p>
+          <p className="text-sm font-bold text-sky-500">나현진 합격 화이팅! 🎉</p>
+          <p className="text-xs text-slate-400 mt-0.5">MADE BY. 나현진</p>
           <p className="text-xs text-slate-300">AWS AIF-C01 합격을 응원합니다 🎉</p>
         </div>
       </div>
