@@ -201,8 +201,7 @@ export default function DashboardScreen() {
 
         {/* MADE BY */}
         <div className="pb-6 flex flex-col items-center gap-1">
-          <p className="text-sm font-bold text-sky-500">나현진 합격 화이팅! 🎉</p>
-          <p className="text-xs text-slate-400 mt-0.5">MADE BY. 나현진</p>
+          <p className="text-xs text-slate-400">MADE BY. 나현진</p>
           <p className="text-xs text-slate-300">AWS AIF-C01 합격을 응원합니다 🎉</p>
         </div>
       </div>
