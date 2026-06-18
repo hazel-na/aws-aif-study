@@ -59,12 +59,7 @@ export default function DashboardScreen() {
       </div>
 
       <div className="px-5 py-6 space-y-6">
-        {/* 원형 진도 */}
-        <div className="flex justify-center">
-          <ProgressRing answered={overall.answered} total={overall.total} size={180} />
-        </div>
-
-        {/* 이론 학습 배너 — 공부를 먼저 하고 싶은 사람을 위해 */}
+        {/* 이론 학습 배너 — 맨 위 */}
         <button
           onClick={() => navigate('/theory')}
           className="w-full bg-gradient-to-r from-sky-500 to-blue-600 rounded-2xl p-4 text-left shadow-md active:scale-[0.98] transition-transform"
@@ -77,6 +72,11 @@ export default function DashboardScreen() {
             <span className="text-white text-2xl">›</span>
           </div>
         </button>
+
+        {/* 원형 진도 */}
+        <div className="flex justify-center">
+          <ProgressRing answered={overall.answered} total={overall.total} size={180} />
+        </div>
 
         {/* 모드 탭 */}
         <div className="bg-white rounded-2xl p-1.5 flex gap-1 shadow-sm">
