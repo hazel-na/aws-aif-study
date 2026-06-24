@@ -223,7 +223,7 @@
     ],
     "koreanQuestion": "한 회사가 프로덕션 환경에서 ML 파이프라인에 Amazon SageMaker를 사용합니다.입력 데이터 크기는 최대 1GB이고 처리 시간은 최대 1시간입니다.거의 실시간(latency가 낮은) 추론이 필요합니다.어떤 SageMaker 추론 옵션이 적합합니까?",
     "correctAnswer": "C",
-    "explanation": "최대 1GB payload 및 긴 처리 시간 지원\n비동기 방식으로 결과 반환",
+    "explanation": "비동기 추론(Asynchronous Inference)은 최대 1GB의 대용량 페이로드를 처리하고 긴 처리 시간이 필요한 작업에 적합합니다. 즉각 응답 없이도 되는 경우 사용하며, 실시간 추론보다 비용 효율적입니다. 실시간 추론은 즉각적인 대화형 응답이 필요한 경우에 사용합니다.",
     "vocabulary": [
       {
         "term": "Real-time inference",
@@ -551,7 +551,7 @@
     ],
     "koreanQuestion": "한 회사가 교육용 게임을 개발하려고 합니다.사용자가 \"병 안에 빨간 구슬 6개, 초록 구슬 4개, 노란 구슬 3개가 있습니다. 초록 구슬을 뽑을 확률은?\"과 같은 문제를 풀도록 합니다.**가장 적은 운영 부담(operational overhead)**으로 요구사항을 충족하는 솔루션은 무엇입니까?",
     "correctAnswer": "C",
-    "explanation": "간단한 규칙 기반 계산으로 확률 산출 가능.\nML 모델 없이 가장 적은 운영 부담.",
+    "explanation": "단순 확률 계산(조합론)은 ML 모델 없이도 수학적 공식으로 정확하게 풀 수 있습니다. 규칙 기반 계산은 운영 오버헤드가 없고 구현이 단순하며 결과가 예측 가능합니다. ML은 데이터에서 복잡한 패턴을 학습해야 할 때 사용합니다.",
     "vocabulary": [
       {
         "term": "Supervised Learning",
@@ -969,7 +969,7 @@
     ],
     "koreanQuestion": "회사가 고객 지원용 챗봇을 만들고자 합니다.챗봇은 사람 개입 없이 기술 문제 해결을 지원합니다.챗봇은 회사의 톤을 준수하는 응답을 생성해야 합니다.이 요구사항을 충족하는 방법은 무엇입니까?",
     "correctAnswer": "C",
-    "explanation": "프롬프트 엔지니어링을 통해 모델이 회사 톤에 맞는 답변을 출력하도록 조정.",
+    "explanation": "프롬프트 엔지니어링은 모델 재학습 없이 입력 방식을 반복 실험·조정해 원하는 출력을 얻는 기법입니다. 회사의 특정 톤이나 형식을 맞추려면 프롬프트를 세밀하게 수정하는 것이 가장 빠르고 비용 효율적인 접근입니다.",
     "vocabulary": [
       {
         "term": "Prompt Engineering",
@@ -1010,7 +1010,7 @@
     ],
     "koreanQuestion": "회사가 Amazon Bedrock의 **대형 언어 모델(LLM)**을 감정 분석에 사용하고자 합니다.회사는 텍스트 문단의 감정을 긍정/부정으로 분류하려 합니다.어떤 프롬프트 엔지니어링 전략이 요구사항을 충족합니까?",
     "correctAnswer": "A",
-    "explanation": "Few-shot learning 방식으로 프롬프트에 예시 포함 → 모델이 정확하게 분류.",
+    "explanation": "Few-shot 학습은 프롬프트에 레이블이 있는 예시(긍정/부정 텍스트 쌍)를 2~5개 포함해 모델이 원하는 분류 방식을 파악하도록 유도합니다. 추가 학습 없이 정확도를 높이는 프롬프트 엔지니어링 기법으로, 빠른 프로토타이핑에 적합합니다.",
     "vocabulary": [
       {
         "term": "Few-shot Learning",
@@ -1174,7 +1174,7 @@
     ],
     "koreanQuestion": "회사가 **대형 언어 모델(LLM)**을 이용해 대화형 에이전트를 개발하려 합니다.LLM이 원하지 않는 행동을 수행하거나 민감한 정보를 노출하지 않도록 하려면 어떻게 해야 합니까?",
     "correctAnswer": "A",
-    "explanation": "프롬프트를 설계하여 LLM이 공격 패턴을 인식하고 대응하도록 하면 안전성 향상.",
+    "explanation": "프롬프트 인젝션 공격 방어를 위해 System Prompt에 공격 패턴 인식·차단 규칙을 명시하고, 모델이 비정상적 지시를 감지하도록 설계합니다. Bedrock Guardrails의 입력 필터링과 함께 사용하면 더욱 강력한 방어가 가능합니다.",
     "vocabulary": [
       {
         "term": "Prompt Injection Attack",
@@ -1215,7 +1215,7 @@
     ],
     "koreanQuestion": "회사가 Generative AI Security Scoping Matrix를 사용하여 솔루션의 보안 책임을 평가했습니다.회사는 매트릭스를 기반으로 4가지 솔루션 범위를 확인했습니다.어떤 솔루션 범위가 회사에 가장 높은 보안 책임 소유권을 제공합니까?",
     "correctAnswer": "D",
-    "explanation": "모델을 처음부터 구축 및 학습하면 모든 보안 책임이 회사에 있음.",
+    "explanation": "생성형 AI 보안 범위 매트릭스에서 모델을 처음부터 직접 구축·학습하는 경우, 데이터 수집·인프라·모델 아키텍처·배포까지 모든 보안 책임이 회사에 귀속됩니다. 관리형 서비스(Bedrock, SageMaker) 사용 시 보안 책임이 AWS로 이전됩니다.",
     "vocabulary": [
       {
         "term": "Generative AI Security Scoping Matrix",
@@ -1379,7 +1379,7 @@
     ],
     "koreanQuestion": "회사가 Amazon Bedrock에서 LLM을 안전하게 사용하려면 어떻게 해야 합니까?",
     "correctAnswer": "A",
-    "explanation": "최소 권한 IAM + 명확 프롬프트 → 안전하게 LLM 사용 가능.",
+    "explanation": "Amazon Bedrock에서 LLM을 안전하게 사용하려면 최소 권한 원칙 기반 IAM 정책 설정과 명확하고 구체적인 프롬프트 설계가 핵심입니다. 모호한 프롬프트는 예기치 않은 응답을 유발하므로 명확한 지시사항과 접근 제어가 모두 필요합니다.",
     "vocabulary": [
       {
         "term": "Least Privilege Access",
@@ -1420,7 +1420,7 @@
     ],
     "koreanQuestion": "회사가 테라바이트 단위 데이터를 가지고 있으며 비즈니스 분석에 활용하고자 합니다.회사는 직원이 입력한 텍스트로부터 SQL 쿼리를 생성할 수 있는 AI 기반 애플리케이션을 만들고 싶습니다.직원들은 기술 경험이 거의 없습니다.어떤 솔루션이 요구사항을 충족합니까?",
     "correctAnswer": "A",
-    "explanation": "GPT 같은 생성형 AI 모델은 자연어를 이해하고 SQL 쿼리를 생성 가능.",
+    "explanation": "GPT(Generative Pre-trained Transformer)와 같은 생성형 AI 모델은 자연어를 이해하고 SQL 쿼리로 변환하는 기능이 뛰어납니다. 비기술직 사용자도 자연어 질문으로 데이터베이스를 조회할 수 있어 데이터 분석 접근성을 높입니다.",
     "vocabulary": [
       {
         "term": "GPT (Generative Pre-trained Transformer)",
@@ -1547,7 +1547,7 @@
     ],
     "koreanQuestion": "회사가 Amazon Bedrock에서 Amazon Titan FM을 구현하고 있습니다.회사 고유의 프라이빗 데이터를 사용해 모델을 보강해야 합니다.어떤 솔루션이 이 요구사항을 충족합니까?",
     "correctAnswer": "C",
-    "explanation": "Knowledge base를 사용하면 사내 데이터 기반으로 모델 보강 가능.",
+    "explanation": "Amazon Bedrock Knowledge Base는 사내 문서(S3, PDF 등)를 벡터 DB에 저장하고 RAG 방식으로 FM이 실시간 검색해 응답에 반영합니다. 모델 재학습 없이 회사 특정 정보를 최신 상태로 유지할 수 있어 가장 효율적인 지식 보강 방법입니다.",
     "vocabulary": [
       {
         "term": "Knowledge Base",
@@ -1679,7 +1679,7 @@
     ],
     "koreanQuestion": "회사가 **파운데이션 모델(FM)**을 학습하고 있습니다.회사는 모델의 정확도를 특정 허용 수준까지 높이길 원합니다.어떤 방법이 요구 사항을 충족합니까?",
     "correctAnswer": "B",
-    "explanation": "에포크 수를 늘리면 모델이 데이터셋을 반복 학습하게 되어 정확도가 향상될 가능성이 높음.",
+    "explanation": "에포크(Epoch)는 전체 학습 데이터를 한 번 완전히 순회하는 단위입니다. 에포크 수를 늘리면 모델이 데이터 패턴을 더 많이 반복 학습해 정확도가 향상됩니다. 단, 과도하게 늘리면 과적합(Overfitting)이 발생할 수 있으므로 적절한 수준을 유지해야 합니다.",
     "vocabulary": [
       {
         "term": "Epoch",
@@ -4710,7 +4710,7 @@
     "choices": [],
     "koreanQuestion": "HOTSPOT - 회사는 ML 애플리케이션을 개발하려고 합니다.다음 단계 중 올바른 순서를 선택하여 잘 구성된 ML 워크로드를 개발하세요.각 단계는 한 번씩만 선택됩니다.",
     "correctAnswer": "HOTSPOT",
-    "explanation": "문제 정의\n데이터 수집\n데이터 전처리\n모델 학습\n모델 평가\n배포 및 모니터링",
+    "explanation": "ML 애플리케이션 개발의 표준 단계:\n1. 비즈니스 문제 정의\n2. 데이터 수집\n3. 데이터 전처리 및 탐색\n4. 모델 학습\n5. 모델 평가\n6. 배포 및 모니터링\n각 단계는 이전 단계의 결과를 기반으로 반복적으로 개선됩니다.",
     "vocabulary": [
       {
         "term": "ML Lifecycle",
@@ -5696,7 +5696,7 @@
     ],
     "koreanQuestion": "회사의 직원들이 고객센터에 전화하는 고객에게 제품 설명과 추천을 제공합니다. 추천은 고객 위치 기반입니다.회사는 이 프로세스를 자동화하기 위해 Foundation Model(FM)을 사용하려고 합니다.어떤 AWS 서비스가 이 요구사항을 충족합니까?",
     "correctAnswer": "C",
-    "explanation": "",
+    "explanation": "Amazon Bedrock은 Claude, Titan 등 다양한 FM을 API로 즉시 사용할 수 있는 완전 관리형 생성형 AI 서비스입니다. 직원이 고객에게 제품 설명과 추천을 제공하는 업무처럼 자연어 생성·대화 응답에 특화되어 있어 고객 서비스 자동화에 가장 적합합니다.",
     "vocabulary": [
       {
         "term": "Foundation Models (FM)",
@@ -5737,7 +5737,7 @@
     ],
     "koreanQuestion": "회사는 고객 서비스 이메일 메시지를 Amazon S3에 업로드하여 비즈니스 분석 애플리케이션을 개발하려고 합니다. 메시지에는 민감한 데이터가 포함될 수 있습니다.민감한 정보가 발견될 때마다 알림을 받고 싶습니다.개발 노력이 가장 적으면서 민감한 정보 탐지 프로세스를 완전 자동화하는 솔루션은 무엇입니까?",
     "correctAnswer": "A",
-    "explanation": "",
+    "explanation": "Amazon Macie는 S3에 저장된 문서에서 이름·이메일·신용카드 번호 등 PII(개인 식별 정보)를 머신러닝으로 자동 탐지·분류하는 서비스입니다. 고객 이메일처럼 민감 정보가 포함될 수 있는 문서를 업로드 전에 스캔해 규정 준수와 데이터 보호를 보장합니다.",
     "vocabulary": [
       {
         "term": "Amazon Macie",
@@ -5830,7 +5830,7 @@
     ],
     "koreanQuestion": "Amazon SageMaker Model Cards를 사용하여 AI 모델을 문서화하는 이점은 무엇입니까?",
     "correctAnswer": "B",
-    "explanation": "",
+    "explanation": "Amazon SageMaker Model Cards는 AI 모델의 목적·성능 지표·한계·편향 여부·평가 결과를 표준화된 형식으로 문서화합니다. 이해 관계자에게 모델 정보를 일관되게 전달하고, AI 거버넌스·규정 준수·투명성을 강화하는 공식 문서로 활용됩니다.",
     "vocabulary": [
       {
         "term": "SageMaker Model Cards",
@@ -5867,7 +5867,7 @@
     ],
     "koreanQuestion": "Foundation Model(FM) 성능 평가에서 F1 점수는 무엇을 측정합니까?",
     "correctAnswer": "A",
-    "explanation": "",
+    "explanation": "F1 Score는 정밀도(Precision)와 재현율(Recall)의 조화 평균입니다. 공식: 2 × (Precision × Recall) / (Precision + Recall). 두 지표를 균형 있게 고려하며, 클래스 불균형 데이터에서 FM 분류 성능을 단일 숫자로 종합 평가할 때 사용합니다.",
     "vocabulary": [
       {
         "term": "F1 score",
@@ -5904,7 +5904,7 @@
     ],
     "koreanQuestion": "회사는 고객 서비스 상담원이 자주 묻는 질문에 대응할 수 있도록 AI/ML 솔루션을 배포했습니다. 질문은 시간이 지남에 따라 변할 수 있습니다.상담원이 질문을 하고 자동 생성된 답변을 받을 수 있도록 하려면 가장 비용 효율적인 전략은 무엇입니까?",
     "correctAnswer": "D",
-    "explanation": "",
+    "explanation": "RAG(검색 증강 생성)는 자주 업데이트되는 FAQ를 외부 지식 저장소에 저장하고 실시간 검색해 최신 정보를 응답에 반영합니다. 프롬프트 엔지니어링과 결합하면 검색된 문서를 효과적으로 활용해 정확하고 맥락에 맞는 답변을 생성할 수 있습니다.",
     "vocabulary": [
       {
         "term": "RAG (Retrieval Augmented Generation)",
@@ -5941,7 +5941,7 @@
     ],
     "koreanQuestion": "회사가 AI 기반 이력서 심사 시스템을 구축했습니다. 대규모 데이터셋으로 모델을 학습했으나, 데이터셋은 모든 인구 통계를 대표하지 못했습니다.책임 있는 AI의 어떤 핵심 차원에 해당합니까?",
     "correctAnswer": "A",
-    "explanation": "",
+    "explanation": "채용 데이터셋에 과거의 차별적 편향이 포함되어 있으면 모델이 특정 인구 통계 그룹을 불공평하게 평가합니다. 이는 Responsible AI의 공정성(Fairness) 원칙 침해에 해당하며, 학습 전 데이터 품질 검토와 SageMaker Clarify 편향 탐지로 해결합니다.",
     "vocabulary": [
       {
         "term": "Fairness",
@@ -5983,7 +5983,7 @@
     ],
     "koreanQuestion": "글로벌 금융회사는 주식 시장 데이터를 분석하는 ML 애플리케이션을 개발했습니다. 개발 단계 전반에 대해 지속적으로 모니터링하고, 회사 정책과 업계 규정을 준수하는지 확인하려 합니다.컴플라이언스 평가에 도움 되는 AWS 서비스는 무엇입니까? (2개 선택)",
     "correctAnswer": "A",
-    "explanation": "",
+    "explanation": "AWS Audit Manager는 금융 등 국제 규정 준수(GDPR, PCI-DSS 등) 감사를 자동화합니다. 24시간 지속 감시, 자동 증거 수집, 감사 보고서 자동 생성 기능으로 AI/ML 솔루션의 컴플라이언스 입증에 필요한 증적을 체계적으로 관리합니다.",
     "vocabulary": [
       {
         "term": "AWS Audit Manager",
@@ -6024,7 +6024,7 @@
     ],
     "koreanQuestion": "회사는 생성형 AI 애플리케이션의 응답 정확도를 개선하려 합니다. 이 애플리케이션은 Amazon Bedrock의 Foundation Model(FM)을 사용합니다.가장 비용 효율적인 해결책은 무엇입니까?",
     "correctAnswer": "D",
-    "explanation": "",
+    "explanation": "프롬프트 엔지니어링은 모델 재학습·파인튜닝 없이 입력 방식을 최적화해 응답 품질을 개선하는 가장 빠르고 비용 효율적인 방법입니다. 더 명확한 지시사항, Chain of Thought, Few-shot 예시 등의 기법으로 생성형 AI 응답의 정확도를 높입니다.",
     "vocabulary": [
       {
         "term": "Prompt engineering",
@@ -6061,7 +6061,7 @@
     ],
     "koreanQuestion": "회사가 소셜 미디어 게시물의 댓글에서 유해한 언어를 식별하려고 합니다. 레이블이 지정된 데이터를 사용하여 모델을 학습하지는 않습니다.유해 언어를 식별하려면 어떤 전략을 사용해야 합니까?",
     "correctAnswer": "B",
-    "explanation": "",
+    "explanation": "Amazon Comprehend의 독성 감지(Toxicity Detection) 기능은 소셜 미디어 댓글 등에서 혐오 발언·욕설·위협적 언어 등 유해 콘텐츠를 자동으로 식별하고 분류하는 NLP 서비스입니다. API 호출만으로 사용 가능한 완전 관리형 서비스입니다.",
     "vocabulary": [
       {
         "term": "Amazon Comprehend",
@@ -6102,7 +6102,7 @@
     ],
     "koreanQuestion": "미디어 회사는 시청자 행동과 인구 통계를 분석하여 개인화된 콘텐츠를 추천하고자 합니다.회사는 커스텀 ML 모델을 배포하고, 시간이 지나면서 모델 품질이 변하는지도 모니터링하고자 합니다.어떤 AWS 서비스가 이 요구사항을 충족합니까?",
     "correctAnswer": "D",
-    "explanation": "",
+    "explanation": "Amazon SageMaker Model Monitor는 배포된 ML 모델의 성능 저하를 자동으로 감지합니다. 시청자 행동 패턴이 학습 데이터와 달라지는 데이터 드리프트(Data Drift)를 탐지하고, 추천 모델이 정확한 개인화를 지속적으로 유지하도록 알림을 제공합니다.",
     "vocabulary": [
       {
         "term": "Model Drift",
@@ -6143,7 +6143,7 @@
     ],
     "koreanQuestion": "회사는 AWS를 사용해 AI/ML 모델을 배포하고 있습니다.모델의 의사 결정 과정에 대한 투명성과 설명을 제공하고자 합니다.어떤 서비스가 이 요구를 충족합니까?",
     "correctAnswer": "A",
-    "explanation": "",
+    "explanation": "Amazon SageMaker Model Cards는 모델의 사용 목적·한계·성능 평가 결과·편향 여부를 문서화해 의사결정 과정의 투명성을 제공합니다. 규제 감사·이해 관계자 보고·내부 AI 거버넌스를 위한 공식 문서로 활용되며, 설명 가능성 요구사항을 충족합니다.",
     "vocabulary": [
       {
         "term": "Model Cards",
@@ -6180,7 +6180,7 @@
     ],
     "koreanQuestion": "제조 회사가 여러 언어로 제품 설명을 작성하려고 합니다.이 작업을 자동화할 수 있는 AWS 서비스는 무엇입니까?",
     "correctAnswer": "A",
-    "explanation": "",
+    "explanation": "Amazon Translate는 완전 관리형 신경망 기계 번역 서비스로, 75개 이상의 언어로 텍스트를 자동 번역합니다. 코딩 없이 API 호출만으로 사용 가능하며, 제품 설명 같은 콘텐츠를 다국어로 자동 변환하는 작업에 가장 빠르고 적합한 솔루션입니다.",
     "vocabulary": [
       {
         "term": "Amazon Translate",
@@ -6241,7 +6241,7 @@
     ],
     "koreanQuestion": "ML 인스턴스 데이터에 대한 정보를 기록하여 거버넌스와 리포팅을 지원하는 AWS 기능은 무엇입니까?",
     "correctAnswer": "A",
-    "explanation": "",
+    "explanation": "Amazon SageMaker Model Cards는 ML 모델의 학습 데이터 출처·성능 지표·평가 환경·한계 사항 등을 거버넌스 및 보고 목적으로 기록합니다. 규정 준수 감사 시 모델 개발 이력과 특성을 공식 문서로 제출할 수 있어 AI 거버넌스 요구사항을 충족합니다.",
     "vocabulary": [
       {
         "term": "Governance",
@@ -6278,7 +6278,7 @@
     ],
     "koreanQuestion": "금융회사가 일부 업무를 ML로 처리하고 있습니다.다음 중 생성형 AI 모델의 활용 사례는 무엇입니까?",
     "correctAnswer": "A",
-    "explanation": "",
+    "explanation": "생성형 AI 모델은 기존 데이터를 분류·예측하는 것이 아니라 새로운 콘텐츠를 생성하는 데 특화됩니다. 고객 불만 요약은 텍스트를 이해하고 새로운 요약문을 생성하는 전형적인 생성형 AI 활용 사례입니다. 반면 분류·예측·추천은 전통적 ML 모델의 영역입니다.",
     "vocabulary": [
       {
         "term": "Generative AI",
@@ -6315,7 +6315,7 @@
     ],
     "koreanQuestion": "의료 회사가 환자 기록에서 관련 정보를 추출하고 요약하는 AI 애플리케이션을 개발하려 합니다.어떤 솔루션이 이 요구사항을 충족합니까?",
     "correctAnswer": "A",
-    "explanation": "",
+    "explanation": "Amazon Comprehend Medical은 의료 기록·임상 노트·처방전 등에서 질병명·약물명·증상·해부학적 용어·PHI(보호 건강 정보) 등 의료 개체와 관계를 자동 추출하는 HIPAA 적격 NLP 서비스입니다. 구조화된 의료 데이터 추출과 애플리케이션 개발에 최적화되어 있습니다.",
     "vocabulary": [
       {
         "term": "Comprehend Medical",
@@ -6352,7 +6352,7 @@
     ],
     "koreanQuestion": "AI에서 임베딩(Embedding)은 어떤 개념입니까?",
     "correctAnswer": "D",
-    "explanation": "",
+    "explanation": "임베딩(Embedding)은 단어·문장·이미지 등의 데이터를 의미적 관계가 보존된 저차원 수치 벡터로 변환한 표현입니다. 유사한 의미의 데이터는 벡터 공간에서 가까운 위치에 배치됩니다. RAG의 벡터 검색과 LLM의 토큰 처리에 핵심적으로 활용됩니다.",
     "vocabulary": [
       {
         "term": "Embedding",
@@ -6434,7 +6434,7 @@
     ],
     "koreanQuestion": "항공사가 항공편 일정, 예약, 결제 관련 질문에 응답할 수 있는 대화형 AI 챗봇을 만들고자 합니다.LLM과 지식 베이스를 활용한 텍스트 기반 인터페이스를 만들고자 합니다.가장 적은 개발 노력으로 요구사항을 충족할 수 있는 솔루션은 무엇입니까?",
     "correctAnswer": "B",
-    "explanation": "",
+    "explanation": "RAG 에이전트는 항공편 스케줄·예약 정보·운임 정책 등을 외부 지식 저장소에서 실시간 검색해 정확하게 답변합니다. Amazon Bedrock Knowledge Bases와 연동하면 최신 운항 정보를 모델 재학습 없이 반영할 수 있어 대화형 고객 지원에 가장 적합합니다.",
     "vocabulary": [
       {
         "term": "RAG (Retrieval Augmented Generation)",
@@ -6471,7 +6471,7 @@
     ],
     "koreanQuestion": "자연어 처리(NLP)에서 토크나이제이션(tokenization)은 어떤 용도로 사용됩니까?",
     "correctAnswer": "C",
-    "explanation": "",
+    "explanation": "토큰화(Tokenization)는 NLP에서 텍스트를 모델이 처리할 수 있는 더 작은 단위(토큰)로 분리하는 첫 번째 전처리 단계입니다. 단어·형태소·문자 단위로 분리할 수 있으며, 이후 벡터화 단계에서 수치로 변환합니다. LLM 비용은 토큰 수를 기준으로 청구됩니다.",
     "vocabulary": [
       {
         "term": "Token",
@@ -6545,7 +6545,7 @@
     ],
     "koreanQuestion": "금융회사가 고객 신용 점수를 산출하는 AI 시스템을 사용하고 있습니다.새로운 지역으로 진출하려고 할 때 검토해야 할 규제는 무엇입니까?",
     "correctAnswer": "D",
-    "explanation": "",
+    "explanation": "금융 AI 시스템을 새로운 지역으로 확장할 때는 해당 지역의 AI 알고리즘 책임법(Algorithm Accountability Laws)과 개인정보 규제를 반드시 검토해야 합니다. 신용평가 AI는 지역별 공정 여신 관련 법률(예: EU AI Act, 미국 ECOA)의 적용을 받을 수 있습니다.",
     "vocabulary": [
       {
         "term": "Algorithm accountability",
@@ -6587,7 +6587,7 @@
     ],
     "koreanQuestion": "회사에서 Amazon Bedrock의 Guardrails 기능으로 유해한 입력/출력을 필터링하려고 합니다.필터링 가능한 콘텐츠 카테고리는? (2개 선택)",
     "correctAnswer": "A",
-    "explanation": "",
+    "explanation": "Amazon Bedrock Guardrails의 콘텐츠 필터는 혐오(Hate)·폭력(Violence)·성적 콘텐츠·모욕 등 여러 카테고리의 유해 콘텐츠를 필터링합니다. 혐오(Hate) 카테고리는 인종·성별·종교·국적·장애 등에 기반한 차별적·혐오적 콘텐츠를 감지하고 차단합니다.",
     "vocabulary": [
       {
         "term": "Guardrails",
@@ -6624,7 +6624,7 @@
     ],
     "koreanQuestion": "프롬프트 엔지니어링의 위험 또는 한계를 설명하는 시나리오는 무엇입니까?",
     "correctAnswer": "B",
-    "explanation": "",
+    "explanation": "프롬프트 엔지니어링의 주요 보안 위험은 프롬프트 인젝션 공격입니다. 악의적 사용자가 교묘하게 설계된 입력으로 System Prompt의 제한을 우회하거나 의도하지 않은 동작을 유발할 수 있습니다. Bedrock Guardrails와 입력 유효성 검사로 방어해야 합니다.",
     "vocabulary": [
       {
         "term": "Prompt injection",
@@ -6666,7 +6666,7 @@
     ],
     "koreanQuestion": "RAG 기반 솔루션에서 새로운 콘텐츠가 매일 추가됩니다.어떤 단계는 배치 처리를 사용해야 합니까? (2개 선택)",
     "correctAnswer": "A",
-    "explanation": "",
+    "explanation": "RAG 파이프라인에서 문서 임베딩(벡터 변환) 생성은 실시간이 불필요하고 대량 처리가 필요한 작업입니다. 새 콘텐츠가 매일 추가되는 환경에서는 배치 처리로 임베딩을 생성해 벡터 DB에 저장합니다. 사용자 질문 처리와 응답 생성 단계만 실시간으로 처리합니다.",
     "vocabulary": [
       {
         "term": "Batch Processing",
@@ -6703,7 +6703,7 @@
     ],
     "koreanQuestion": "복잡한 작업을 작은 단위로 나눠 LLM에 순차적으로 보내는 기법은 무엇입니까?",
     "correctAnswer": "B",
-    "explanation": "",
+    "explanation": "프롬프트 체이닝(Prompt Chaining)은 복잡한 작업을 여러 순차적 하위 단계로 분해해 각 LLM 출력이 다음 단계의 입력이 되도록 연결하는 기법입니다. 단일 프롬프트로 처리하기 어려운 복잡한 분석이나 다단계 추론 작업에 효과적입니다.",
     "vocabulary": [
       {
         "term": "Prompt chaining",
@@ -6740,7 +6740,7 @@
     ],
     "koreanQuestion": "빠르게 변하는 재고 데이터를 반영해 텍스트 생성 정확도를 높이려면 어떤 기법이 적절합니까?",
     "correctAnswer": "C",
-    "explanation": "",
+    "explanation": "RAG는 모델 재학습 없이 외부 저장소의 최신 정보를 실시간으로 검색해 응답에 반영합니다. 재고 데이터처럼 빠르게 변하는 정보는 Fine-tuning(학습 후 데이터 고정)보다 RAG가 훨씬 적합합니다. RAG는 데이터 업데이트가 쉽고 비용 효율적입니다.",
     "vocabulary": [
       {
         "term": "RAG",
@@ -6777,7 +6777,7 @@
     ],
     "koreanQuestion": "모델 버전 기록 및 개발 문서를 표준화하려는 경우, 어떤 도구가 적절합니까?",
     "correctAnswer": "C",
-    "explanation": "",
+    "explanation": "Amazon SageMaker Model Cards는 AI 모델의 개발 이력·버전 정보·학습 데이터 출처·성능 지표 등을 체계적으로 문서화합니다. 모델 거버넌스와 규정 준수를 위한 공식 기록으로 활용되며, 팀 간 투명한 정보 공유와 감사 추적을 지원합니다.",
     "vocabulary": [
       {
         "term": "Model Cards",
@@ -6814,7 +6814,7 @@
     ],
     "koreanQuestion": "여러 ML 모델을 사용하는 회사가 원래 모델 품질의 변화를 감지하여 문제를 해결하고자 합니다.어떤 AWS 서비스가 이 요구사항을 충족합니까?",
     "correctAnswer": "D",
-    "explanation": "",
+    "explanation": "Amazon SageMaker Model Monitor는 배포된 여러 ML 모델의 성능을 자동으로 감시합니다. 데이터 드리프트(입력 데이터 분포 변화)·모델 품질 저하·편향 드리프트·특징 기여도 변화를 탐지하고 품질 저하 시 알림을 전송해 신속한 대응을 지원합니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "ml-basics"
@@ -6846,7 +6846,7 @@
     ],
     "koreanQuestion": "RAG에서 \"청킹(chunking)\"의 목적은 무엇입니까?",
     "correctAnswer": "C",
-    "explanation": "",
+    "explanation": "청킹(Chunking)은 RAG에서 큰 문서를 더 작은 단위로 분할하는 과정입니다. 적절한 크기로 청킹하면 벡터 인덱스에서 더 관련성 높은 문서 조각을 검색해 컨텍스트 품질과 응답 정확도가 향상됩니다. 너무 크면 노이즈 증가, 너무 작으면 문맥 부족 문제가 생깁니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "generative-ai"
@@ -6878,7 +6878,7 @@
     ],
     "koreanQuestion": "파일럿 단계에서 사용량이 적고, 향후 수요 예측이 어려운 경우 비용을 최소화하는 솔루션은?",
     "correctAnswer": "C",
-    "explanation": "",
+    "explanation": "Amazon Bedrock On-Demand 방식은 사용한 만큼만 비용을 지불하므로 트래픽이 낮거나 예측하기 어려운 초기 단계에 가장 비용 효율적입니다. Provisioned Throughput은 안정적인 대규모 트래픽에 유리하지만 사용량에 관계없이 예약 비용이 발생합니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "generative-ai"
@@ -6910,7 +6910,7 @@
     ],
     "koreanQuestion": "정치적으로 편향된 콘텐츠가 출력되는 경우, 어떤 Guardrail을 설정해야 합니까?",
     "correctAnswer": "B",
-    "explanation": "",
+    "explanation": "Amazon Bedrock Guardrails의 거부 주제(Denied Topics) 기능은 정치·종교·경쟁사 정보 등 원하지 않는 특정 주제의 응답을 차단합니다. 정치적 편향 콘텐츠 문제를 해결하려면 해당 주제를 거부 목록에 추가해 필터링합니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "aws-services"
@@ -6942,7 +6942,7 @@
     ],
     "koreanQuestion": "신용카드 사기 탐지 시스템에서 실제 사기가 아닌 건도 많이 플래그됩니다.직원의 검토 부담을 줄이기 위한 평가지표는?",
     "correctAnswer": "C",
-    "explanation": "",
+    "explanation": "정밀도(Precision) = TP/(TP+FP)로, 사기라고 예측한 것 중 실제 사기인 비율입니다. False Positive(정상 거래를 사기로 오탐)를 줄이면 검토 팀의 불필요한 작업 부담이 감소합니다. 재현율보다 정밀도를 높이는 방향으로 임계값을 조정하면 오탐 건수가 줄어듭니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "ml-basics"
@@ -6974,7 +6974,7 @@
     ],
     "koreanQuestion": "제품 매뉴얼 기반 AI 상담봇에서 고객 신뢰를 높이기 위한 전략은?",
     "correctAnswer": "B",
-    "explanation": "",
+    "explanation": "AI 에이전트가 답변과 함께 원본 제품 매뉴얼 링크를 제공하면 사용자가 정보의 출처를 직접 확인할 수 있어 신뢰도가 높아집니다. 이는 Responsible AI의 투명성(Transparency) 원칙에 부합하며, AI 환각(Hallucination) 검증에도 도움이 됩니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "ml-basics"
@@ -7006,7 +7006,7 @@
     ],
     "koreanQuestion": "AI가 치료 추천과 함께 설명도 제공합니다.이것은 어떤 인간 중심 설계 원칙입니까?",
     "correctAnswer": "A",
-    "explanation": "",
+    "explanation": "설명 가능성(Explainability)은 AI의 결정 이유를 사람이 이해할 수 있도록 하는 인간 중심 AI의 핵심 원칙입니다. 치료 제안과 함께 설명을 제공하면 의료진이 AI 결정을 검토·검증할 수 있어 안전성·신뢰성이 향상되고 책임 있는 활용을 지원합니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "ml-basics"
@@ -7070,7 +7070,7 @@
     ],
     "koreanQuestion": "Fine-tuning된 모델이 꾸준한 요청을 처리해야 할 때, 가장 비용 효율적인 배포 방식은?",
     "correctAnswer": "D",
-    "explanation": "",
+    "explanation": "Fine-tuned(커스텀) 모델을 Amazon Bedrock에 배포하려면 반드시 Provisioned Throughput이 필요합니다. On-Demand로는 Fine-tuned 모델을 서빙할 수 없습니다. 또한 안정적이고 예측 가능한 트래픽에서는 Provisioned Throughput이 On-Demand보다 비용 효율적입니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "generative-ai"
@@ -7341,7 +7341,7 @@
     ],
     "koreanQuestion": "금융회사가 거래 데이터를 기반으로 모든 신용카드 활동을 사기 가능성과 비사기로 구분하고자 합니다. 어떤 유형의 ML 모델이 이 요구사항에 적합합니까?",
     "correctAnswer": "C",
-    "explanation": "",
+    "explanation": "이진 분류(Binary Classification)는 데이터를 두 가지 범주 중 하나로 분류하는 ML 유형입니다. 신용카드 거래를 사기(Fraudulent) 또는 정상(Non-fraudulent)으로 분류하는 것이 전형적인 이진 분류 문제이며, 정답이 딱 2개인 경우에 사용합니다.",
     "vocabulary": [
       {
         "term": "이진 분류(Binary Classification)",
@@ -7574,7 +7574,7 @@
     ],
     "koreanQuestion": "금융 회사가 AWS에서 생성 AI 모델을 운영합니다. 민감한 고객 데이터 처리 관련 국제 규정 준수 보고서를 생성해야 합니다. 어떤 AWS 서비스가 요구사항에 맞습니까?",
     "correctAnswer": "B",
-    "explanation": "",
+    "explanation": "AWS Artifact는 SOC·PCI-DSS·ISO·GDPR 등 국제 보안 및 규정 준수 감사 보고서를 온디맨드로 제공하는 무료 포털입니다. 제3자 감사 기관이 검증한 공식 AWS 컴플라이언스 문서를 다운로드해 금융 규제 준수 입증 보고서로 즉시 활용할 수 있습니다.",
     "vocabulary": [
       {
         "term": "AWS Artifact",
@@ -7611,7 +7611,7 @@
     ],
     "koreanQuestion": "의료 회사가 현장 정보 처리 애플리케이션을 현대화하려 합니다. 생성 AI를 이용해 환자의 의료 질문에 답변할 계획입니다. 책임 있는 AI 구현을 위해 어떤 AWS 서비스를 사용해야 합니까?",
     "correctAnswer": "A",
-    "explanation": "",
+    "explanation": "Amazon Bedrock Guardrails는 의료 AI 앱에서 위험하거나 부적절한 콘텐츠 생성을 방지합니다. 특정 주제 차단·유해 콘텐츠 필터링·PII 마스킹 등으로 의료 정보의 안전성을 보장하고, HIPAA 등 의료 규정 준수 요구사항을 충족합니다.",
     "vocabulary": [
       {
         "term": "Guardrails",
@@ -7722,7 +7722,7 @@
     ],
     "koreanQuestion": "회사가 챗봇의 응답을 회사의 원하는 톤에 맞추고자 합니다. 고객 서비스 상담사와 고객 간의 고품질 대화 예시 100개를 보유하고 있습니다. 이 데이터를 사용해 챗봇에 회사 톤을 반영하려 합니다. 어떤 솔루션이 요구사항을 충족합니까?",
     "correctAnswer": "D",
-    "explanation": "",
+    "explanation": "Fine-tuning은 100개의 고품질 프롬프트-응답 예시로 모델 가중치를 직접 수정해 특정 말투·형식·응답 스타일을 학습시킵니다. RAG는 지식 보강에 적합하지만 특정 톤/스타일 학습에는 Fine-tuning이 더 효과적입니다. Amazon Bedrock Fine-tuning 작업으로 구현합니다.",
     "vocabulary": [
       {
         "term": "Amazon Bedrock",
@@ -7763,7 +7763,7 @@
     ],
     "koreanQuestion": "전자상거래 회사가 고객 주문 자동화 챗봇을 운영 중입니다. 챗봇은 AI로 구동되며 24시간 365일 고객에게 제공됩니다. 챗봇을 출시 전에 해결해야 할 AI 시스템 입력 취약점은 무엇입니까?",
     "correctAnswer": "B",
-    "explanation": "",
+    "explanation": "프롬프트 인젝션은 AI 챗봇을 대상으로 악의적인 입력으로 System Prompt의 제한을 우회하거나 의도하지 않은 동작을 유도하는 공격입니다. 항상 실행 중인 주문 자동화 챗봇은 이러한 공격에 취약하며, Guardrails와 입력 유효성 검사로 방어해야 합니다.",
     "vocabulary": [
       {
         "term": "Prompt injection",
@@ -7800,7 +7800,7 @@
     ],
     "koreanQuestion": "소셜 미디어 회사가 자사 앱에서 차별적 콘텐츠 게시를 방지하려 합니다. 솔루션 일환으로 Amazon Bedrock을 사용하려고 합니다. 어떻게 Bedrock을 활용할 수 있을까요?",
     "correctAnswer": "B",
-    "explanation": "",
+    "explanation": "Amazon Bedrock Guardrails의 거부 주제(Denied Topics) 기능으로 차별적 콘텐츠나 특정 주제와 관련된 사용자 입력 및 모델 출력을 차단합니다. 소셜 미디어 플랫폼에서 차별적 게시물을 방지하는 콘텐츠 모더레이션의 첫 번째 방어선으로 활용합니다.",
     "vocabulary": [
       {
         "term": "Amazon Bedrock Guardrails",
@@ -8665,7 +8665,7 @@
     ],
     "koreanQuestion": "전자상거래 회사가 구매 이력과 선호도를 기반으로 고객을 그룹화하여 사용자 경험을 개인화하려고 합니다.어떤 머신러닝 기법을 사용해야 할까요?",
     "correctAnswer": "B",
-    "explanation": "",
+    "explanation": "클러스터링(Clustering)은 비지도 학습의 대표적 기법으로, 레이블 없이 구매 이력·선호도 등 고객 데이터에서 유사한 패턴의 그룹을 자동으로 식별합니다. K-Means가 대표 알고리즘이며, 고객 세분화·개인화 마케팅·추천 시스템 구축에 폭넓게 활용됩니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "aws-services"
@@ -8697,7 +8697,7 @@
     ],
     "koreanQuestion": "회사가 직원들의 공개된 파운데이션 모델(FM) 접근을 제어하려고 합니다.어떤 솔루션이 이 요구사항을 충족할까요?",
     "correctAnswer": "C",
-    "explanation": "",
+    "explanation": "Amazon SageMaker JumpStart는 사전 학습된 FM과 ML 모델을 검색·배포할 수 있는 모델 허브입니다. 관리자가 직원에게 표시되는 FM 목록을 제한함으로써 승인되지 않은 외부 공개 모델에 대한 접근을 통제하고 보안 정책을 준수할 수 있습니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "generative-ai"
@@ -8729,7 +8729,7 @@
     ],
     "koreanQuestion": "회사가 고객 서비스팀의 글로벌 고객 대응을 돕기 위해 번역 도구를 구축했습니다. 도구 성능을 평가하기 위해, 도구와 실제 인간의 번역 결과를 동일 문서로 비교하는 병렬 데이터 프로세스를 마련했습니다.번역 도구 평가에 적절한 전략은 무엇인가요?",
     "correctAnswer": "B",
-    "explanation": "",
+    "explanation": "BLEU(Bilingual Evaluation Understudy)는 기계 번역 품질을 자동으로 평가하는 표준 지표입니다. AI 번역 결과가 정답 번역(참조 번역)과 얼마나 일치하는지 정밀도(Precision) 기준으로 측정하며, 번역 시스템 간 상대적 성능 비교에 가장 널리 사용됩니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "deep-learning"
@@ -8761,7 +8761,7 @@
     ],
     "koreanQuestion": "AI 전문가가 LLM에서 더 다양하고 창의적인 결과를 생성하고 싶어 합니다.추론 파라미터를 어떻게 조정해야 할까요?",
     "correctAnswer": "A",
-    "explanation": "",
+    "explanation": "Temperature는 LLM 출력의 다양성과 창의성을 조절하는 파라미터입니다. 값이 높을수록 확률 분포가 균등해져 더 다양하고 예측 불가능한 출력이 생성됩니다. 창의적 글쓰기나 아이디어 브레인스토밍이 필요할 때 Temperature를 높이면 효과적입니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "generative-ai"
@@ -8793,7 +8793,7 @@
     ],
     "koreanQuestion": "한 회사가 맞춤형 컴퓨터 비전 모델을 개발했습니다. 실제 데이터에서 오류를 줄이기 위해 데이터 라벨링에 사용자 친화적인 인터페이스가 필요합니다.어떤 AWS 서비스 또는 도구가 적합할까요?",
     "correctAnswer": "A",
-    "explanation": "",
+    "explanation": "Amazon SageMaker Ground Truth는 데이터 라벨링 작업을 관리하는 서비스입니다. 직관적인 시각적 인터페이스를 제공하며, 고신뢰도 데이터를 자동 라벨링해 수작업을 최소화합니다. 컴퓨터 비전 모델을 위한 이미지 라벨링 등 다양한 작업에 적합합니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "ml-basics"
@@ -8830,7 +8830,7 @@
     ],
     "koreanQuestion": "회사가 직원 채용 솔루션에 AI를 도입하면서 편향 위험을 줄이고 책임감 있는 AI를 보장하려고 합니다.책임 있는 AI의 핵심 요소 중 어떤 것을 고려해야 할까요? (두 가지 선택)",
     "correctAnswer": "A",
-    "explanation": "",
+    "explanation": "AI 채용 솔루션에서 편향 위험을 완화하고 공정성을 보장하려면 Responsible AI의 공정성(Fairness) 원칙을 적용해야 합니다. SageMaker Clarify로 학습 데이터의 편향을 탐지하고, 다양한 인구 통계 그룹에 대한 예측 결과를 균등하게 평가합니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "ai-ethics"
@@ -8862,7 +8862,7 @@
     ],
     "koreanQuestion": "한 금융사가 고객 이탈 예측 모델을 배포했습니다. 1주일간 운영 후, 실제 고객 행동 대비 예측 정확도를 평가하려고 합니다.어떤 평가지표가 적합할까요?",
     "correctAnswer": "C",
-    "explanation": "",
+    "explanation": "F1 Score는 정밀도와 재현율의 조화 평균으로, 두 지표를 균형 있게 고려합니다. 고객 이탈 예측처럼 False Positive와 False Negative 모두 중요한 비즈니스 상황에서 모델 성능을 종합적으로 평가할 수 있습니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "ml-basics"
@@ -8894,7 +8894,7 @@
     ],
     "koreanQuestion": "한 회사가 Amazon Bedrock의 사전학습된 FM을 사용하는 생성 AI 애플리케이션을 보유하고 있습니다.FM이 회사 정보를 활용해 더 많은 컨텍스트를 포함하도록 하려 합니다.가장 비용 효율적인 솔루션은 무엇일까요?",
     "correctAnswer": "A",
-    "explanation": "",
+    "explanation": "Amazon Bedrock Knowledge Bases는 회사의 내부 문서를 벡터 DB에 저장하고 RAG 방식으로 FM이 실시간 참조하게 합니다. 모델 재학습 없이 회사 특정 최신 정보를 유지하면서 정확한 답변을 생성할 수 있어 엔터프라이즈 AI에 가장 적합합니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "aws-services"
@@ -8942,7 +8942,7 @@
     ],
     "koreanQuestion": "한 외식 업체가 고객 음식 선호도를 예측하기 위해 데이터를 수집하려고 합니다. 이 회사는 모든 인구 통계 집단의 음식 선호도가 데이터에 포함되도록 하기를 원합니다. 이 시나리오가 나타내는 데이터셋 특성은 무엇인가요?",
     "correctAnswer": "B",
-    "explanation": "",
+    "explanation": "학습 데이터의 다양성(Diversity)은 모델이 특정 집단·편향에 치우치지 않고 공정한 예측을 하기 위한 핵심 요소입니다. 식품 선호도 예측처럼 다양한 문화적·인구통계적 배경의 고객 데이터가 필요하며, 특정 집단만 대표하는 데이터는 편향된 모델을 만듭니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "ml-basics"
@@ -8974,7 +8974,7 @@
     ],
     "koreanQuestion": "회사가 인사 정책에 대한 질문에 답변하는 챗봇을 만들고자 합니다. LLM을 사용 중이며, 방대한 디지털 문서 자료를 보유하고 있습니다. 생성된 응답을 최적화하려면 어떤 기법을 사용해야 하나요?",
     "correctAnswer": "A",
-    "explanation": "",
+    "explanation": "RAG는 HR 정책 문서를 외부 지식 저장소에 저장하고 실시간 검색해 정확한 정책 정보를 제공합니다. FM 재학습 없이 정책 변경 시 문서만 업데이트하면 되므로 유지 관리가 간편하고, 항상 최신 정책 기반의 답변을 보장합니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "generative-ai"
@@ -9006,7 +9006,7 @@
     ],
     "koreanQuestion": "교육 회사가 10대 청소년을 대상으로 한 챗봇을 개발 중이며, 창의적인 철자 및 축약어를 포함한 언어 스타일을 사용하고자 합니다. 이러한 언어 스타일을 잘 반영했는지 평가하기 위해 사용할 수 있는 성능 평가지표는 무엇인가요?",
     "correctAnswer": "B",
-    "explanation": "",
+    "explanation": "BERTScore는 BERT 모델을 활용해 생성된 텍스트와 참조 텍스트 간 의미적 유사도를 측정합니다. 단순 단어 일치가 아닌 문맥적 의미를 고려하므로, 10대 언어처럼 비격식적 표현이 많은 경우에도 언어 품질과 적절성을 더 정확하게 평가할 수 있습니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "generative-ai"
@@ -9038,7 +9038,7 @@
     ],
     "koreanQuestion": "고객 서비스 팀이 고객 피드백을 분석하고 이를 자동으로 제품 품질, 고객 서비스, 배송 경험 등의 카테고리로 분류하는 애플리케이션을 개발하고 있습니다. 이 시나리오에 해당하는 AI 개념은 무엇인가요?",
     "correctAnswer": "B",
-    "explanation": "",
+    "explanation": "자연어 처리(NLP)는 텍스트 데이터를 이해·분석하는 AI 분야입니다. 고객 피드백을 자동으로 카테고리별로 분류하는 텍스트 분류(Text Classification)는 NLP의 핵심 응용 사례입니다. Amazon Comprehend가 대표적인 AWS NLP 서비스입니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "ml-basics"
@@ -9452,7 +9452,7 @@
     "choices": [],
     "koreanQuestion": "한 회사가 개인 대출 승인/거절을 지원하는 AI 애플리케이션을 개발 중이다. 이 애플리케이션은 책임 있는 AI(Responsible AI) 원칙을 따라야 한다. 각 작업에 대해 적절한 책임 있는 AI 원칙을 선택하시오.",
     "correctAnswer": "HOTSPOT",
-    "explanation": "대출 승인과 같은 고위험 영역에서는 공정성, 투명성, 책임성 등의 원칙이 필수다.",
+    "explanation": "대출 승인과 같은 고위험 AI 의사결정 영역에서는 Responsible AI 원칙인 공정성(Fairness)·투명성(Transparency)·설명 가능성(Explainability)·책임성(Accountability)이 필수입니다. EU AI Act처럼 고위험 AI 시스템에 대한 규제가 강화되고 있습니다.",
     "vocabulary": [
       {
         "term": "Responsible AI",
@@ -9877,7 +9877,7 @@
     ],
     "koreanQuestion": "머신러닝 지식이 거의 없는 AI 실무자가 코드를 작성하지 않고 직원 이직률을 예측하고 싶다. 어떤 SageMaker 기능이 이를 충족하는가?",
     "correctAnswer": "A",
-    "explanation": "Canvas는 코딩 없이 시각적 인터페이스로 ML 모델을 구축·학습·배포할 수 있다.",
+    "explanation": "Amazon SageMaker Canvas는 코딩 없이 시각적 인터페이스(드래그앤드롭)로 ML 모델을 구축·학습·배포하는 노코드 도구입니다. ML 지식이 없는 비즈니스 분석가나 도메인 전문가가 인사 데이터로 이직률 예측 모델을 직접 만들 수 있습니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "aws-services"
@@ -10048,7 +10048,7 @@
     "choices": [],
     "koreanQuestion": "한 회사가 ML 기술을 사용하여 애플리케이션을 개발하고 있다.각 작업에 대해 올바른 ML 기술을 선택하시오. (각 기술은 한 번만 선택)",
     "correctAnswer": "HOTSPOT",
-    "explanation": "각 ML 기법은 특정 문제 유형에 최적화되어 있으며, 적절히 선택해야 한다.",
+    "explanation": "각 ML 기법은 특정 문제 유형에 최적화되어 있습니다. 분류는 범주 예측, 회귀는 연속값 예측, 클러스터링은 그룹 발견, 강화학습은 순차적 의사결정 최적화에 각각 적합하며, 비즈니스 목표에 맞는 기법을 선택해야 합니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "ml-basics"
@@ -10358,7 +10358,7 @@
     "choices": [],
     "koreanQuestion": "한 전자상거래 회사가 앱 사용자에게 개인화된 제품 추천을 제공하는 생성 AI 솔루션을 개발 중이다.AI 솔루션이 제품 판매 및 사용자 참여를 얼마나 효과적으로 증가시키는지 추적하고자 한다.",
     "correctAnswer": "HOTSPOT",
-    "explanation": "비즈니스 목표에 따라 KPI를 정의하고 추적해야 AI 솔루션 효과를 평가할 수 있다.",
+    "explanation": "AI 솔루션 효과를 평가하려면 비즈니스 목표에 부합하는 KPI(핵심 성과 지표)를 사전에 정의하고 추적해야 합니다. 추천 시스템의 경우 클릭률·구매 전환율·사용자 체류 시간 등이 주요 KPI가 되며, 기술 지표(정확도)와 비즈니스 지표를 모두 고려해야 합니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "aws-services"
@@ -10422,7 +10422,7 @@
     ],
     "koreanQuestion": "감정 분석은 AI의 어떤 분야에 속하는가?",
     "correctAnswer": "C",
-    "explanation": "감정 분석은 텍스트 데이터에서 감정이나 의견을 추출하는 NLP 기술의 한 분야이다.",
+    "explanation": "감성 분석(Sentiment Analysis)은 텍스트에서 감정(긍정/부정/중립)이나 의견을 자동으로 추출하는 자연어 처리(NLP)의 하위 분야입니다. Amazon Comprehend의 감성 분석 기능이 대표적이며, 고객 리뷰·소셜 미디어 반응을 자동 분류해 비즈니스 인사이트를 추출합니다.",
     "vocabulary": [],
     "isHotspot": false,
     "category": "ml-basics"

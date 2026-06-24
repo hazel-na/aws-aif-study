@@ -1,44 +1,158 @@
 import { useEffect, useRef, useState } from 'react';
 import Tooltip from './Tooltip';
+import THEORY from '../data/theoryContent';
+
+// 챕터 색상 매핑
+const CHAPTER_COLORS = {
+  'ch1-ai-ml-basics':     { bg: 'bg-sky-50',    border: 'border-sky-200',    header: 'bg-sky-100',    text: 'text-sky-700',    badge: 'bg-sky-500' },
+  'ch2-generative-ai':    { bg: 'bg-violet-50',  border: 'border-violet-200', header: 'bg-violet-100', text: 'text-violet-700', badge: 'bg-violet-500' },
+  'ch3-model-evaluation': { bg: 'bg-emerald-50', border: 'border-emerald-200',header: 'bg-emerald-100',text: 'text-emerald-700',badge: 'bg-emerald-500' },
+  'ch4-aws-services':     { bg: 'bg-orange-50',  border: 'border-orange-200', header: 'bg-orange-100', text: 'text-orange-700', badge: 'bg-orange-500' },
+  'ch5-responsible-ai':   { bg: 'bg-red-50',     border: 'border-red-200',    header: 'bg-red-100',    text: 'text-red-700',    badge: 'bg-red-500' },
+};
+const DEFAULT_COLOR = { bg: 'bg-slate-50', border: 'border-slate-200', header: 'bg-slate-100', text: 'text-slate-700', badge: 'bg-slate-500' };
+
+function findRelatedTopics(question) {
+  const searchText = [
+    question.explanation || '',
+    ...(question.vocabulary || []).map(v => `${v.term} ${v.definition}`),
+    ...(question.choices || []).map(c => `${c.enText} ${c.koText || ''}`),
+    question.englishQuestion || '',
+  ].join(' ');
+  const searchLower = searchText.toLowerCase();
+
+  const scored = [];
+  for (const chapter of THEORY) {
+    for (const topic of chapter.topics) {
+      let score = 0;
+      for (const kw of topic.keywords || []) {
+        if (searchLower.includes(kw.toLowerCase())) score++;
+      }
+      if (score > 0) scored.push({ chapter, topic, score });
+    }
+  }
+
+  return scored.sort((a, b) => b.score - a.score).slice(0, 5);
+}
+
+// 이론 섹션 렌더러 (텍스트/표 모두 지원)
+function TheoryTopicBlock({ chapter, topic, defaultOpen = false }) {
+  const [open, setOpen] = useState(defaultOpen);
+  const color = CHAPTER_COLORS[chapter.id] || DEFAULT_COLOR;
+
+  return (
+    <div className={`border ${color.border} rounded-2xl overflow-hidden`}>
+      {/* 헤더 */}
+      <button
+        onClick={() => setOpen(o => !o)}
+        className={`w-full flex items-start justify-between px-4 py-3 ${color.header} text-left gap-2`}
+      >
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-1.5 mb-0.5">
+            <span className={`text-xs font-bold px-1.5 py-0.5 rounded-full text-white ${color.badge}`}>
+              {chapter.emoji} {chapter.title.split(':')[0].trim()}
+            </span>
+          </div>
+          <p className={`text-sm font-bold ${color.text} leading-snug`}>{topic.title}</p>
+        </div>
+        <span className={`text-sm mt-0.5 shrink-0 ${color.text}`}>{open ? '▲' : '▼'}</span>
+      </button>
+
+      {/* 본문 */}
+      {open && (
+        <div className={`px-4 py-3 ${color.bg} space-y-3`}>
+          {/* 텍스트 내용 */}
+          {topic.content && (
+            <p className="text-xs text-slate-700 leading-relaxed whitespace-pre-line">{topic.content}</p>
+          )}
+
+          {/* 표 */}
+          {topic.type === 'table' && topic.table && (
+            <div className="overflow-x-auto rounded-xl border border-slate-200">
+              <table className="text-xs w-full border-collapse">
+                <thead>
+                  <tr>
+                    {topic.table.headers.map((h, i) => (
+                      <th
+                        key={i}
+                        className="px-3 py-2 text-left font-bold text-white bg-slate-600 whitespace-nowrap"
+                      >
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {topic.table.rows.map((row, ri) => (
+                    <tr key={ri} className={ri % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
+                      {row.map((cell, ci) => (
+                        <td key={ci} className="px-3 py-2 text-slate-700 align-top border-t border-slate-100">
+                          {cell}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          {/* 키워드 태그 */}
+          {topic.keywords?.length > 0 && (
+            <div className="flex flex-wrap gap-1 pt-1">
+              {topic.keywords.map((kw, i) => (
+                <span
+                  key={i}
+                  className={`text-xs font-medium px-2 py-0.5 rounded-full ${color.bg} ${color.text} border ${color.border}`}
+                >
+                  {kw}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function BottomSheet({ question, userAnswer, isCorrect, onNext, onClose }) {
   const [visible, setVisible] = useState(false);
   const ref = useRef(null);
 
+  const relatedTopics = findRelatedTopics(question);
+  const hasExplanation = question.explanation && question.explanation.trim().length > 0;
+
   useEffect(() => {
-    // 마운트 시 살짝 딜레이 후 슬라이드업
     const t = setTimeout(() => setVisible(true), 30);
     return () => clearTimeout(t);
   }, []);
 
   const isHotspot = question.isHotspot || question.correctAnswer === 'HOTSPOT' || question.correctAnswer === 'UNKNOWN';
 
-  // 해설 텍스트에서 용어를 찾아 Tooltip으로 래핑
+  // 해설 텍스트 → vocab 용어 툴팁 처리
   const renderExplanation = (text) => {
     if (!text) return null;
-    if (!question.vocabulary?.length) return <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">{text}</p>;
+    if (!question.vocabulary?.length) {
+      return <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">{text}</p>;
+    }
 
-    const vocab = question.vocabulary;
-    let result = text;
     const parts = [];
-    let remaining = result;
-
-    // 간단한 term 하이라이팅
-    for (const v of vocab) {
+    let remaining = text;
+    for (const v of question.vocabulary) {
       if (!v.term || !v.definition) continue;
       const idx = remaining.indexOf(v.term);
       if (idx >= 0) {
-        if (idx > 0) parts.push(<span key={parts.length}>{remaining.substring(0, idx)}</span>);
+        if (idx > 0) parts.push(<span key={`t${parts.length}`}>{remaining.substring(0, idx)}</span>);
         parts.push(
-          <Tooltip key={parts.length} term={v.term} definition={v.definition}>
+          <Tooltip key={`v${parts.length}`} term={v.term} definition={v.definition}>
             {v.term}
           </Tooltip>
         );
         remaining = remaining.substring(idx + v.term.length);
       }
     }
-    if (remaining) parts.push(<span key={parts.length}>{remaining}</span>);
-
+    if (remaining) parts.push(<span key={`r${parts.length}`}>{remaining}</span>);
     return (
       <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">
         {parts.length > 1 ? parts : text}
@@ -46,116 +160,170 @@ export default function BottomSheet({ question, userAnswer, isCorrect, onNext, o
     );
   };
 
+  const correctChoice = question.choices?.find(c => c.key === question.correctAnswer);
+
   return (
     <>
-      {/* 딤 오버레이 */}
-      <div
-        className="fixed inset-0 bg-black/30 z-40"
-        onClick={onClose}
-      />
+      <div className="fixed inset-0 bg-black/40 z-40" onClick={onClose} />
 
-      {/* 바텀 시트 */}
       <div
         ref={ref}
         className={`
           fixed bottom-0 left-0 right-0 z-50
           bg-white rounded-t-3xl shadow-2xl
-          max-h-[80dvh] flex flex-col
+          max-h-[88dvh] flex flex-col
           transition-transform duration-300 ease-out
           ${visible ? 'translate-y-0' : 'translate-y-full'}
         `}
       >
-        {/* 드래그 핸들 */}
-        <div className="flex justify-center pt-3 pb-1">
+        {/* 핸들 + 닫기 */}
+        <div className="flex justify-center items-center pt-3 pb-2 relative shrink-0">
           <div className="w-10 h-1 rounded-full bg-slate-200" />
+          <button
+            onClick={onClose}
+            className="absolute right-4 w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 text-slate-400 text-sm font-bold hover:bg-slate-200 active:scale-90 transition-all"
+            aria-label="닫기"
+          >
+            ✕
+          </button>
         </div>
 
-        <div className="overflow-y-auto flex-1 px-5 pb-4">
+        {/* 스크롤 영역 */}
+        <div className="overflow-y-auto flex-1 px-4 pb-4 space-y-4">
+
           {isHotspot ? (
-            /* HOTSPOT/매칭형 문제 안내 */
-            <div className="space-y-4">
-              <div className="flex items-center gap-2 bg-purple-50 rounded-xl p-3">
-                <span className="text-2xl">📋</span>
+            /* ── HOTSPOT/매칭형 ── */
+            <>
+              <div className="flex items-center gap-3 bg-purple-50 rounded-2xl p-4">
+                <span className="text-3xl">📋</span>
                 <div>
-                  <p className="font-bold text-purple-700 text-sm">매칭/순서형 문제</p>
-                  <p className="text-xs text-purple-600">이 문제는 서술형 답안입니다. 해설을 참고하세요.</p>
+                  <p className="font-extrabold text-purple-700 text-sm">매칭/순서형 문제</p>
+                  <p className="text-xs text-purple-500 mt-0.5">서술형 답안입니다. 아래 해설을 참고하세요.</p>
                 </div>
               </div>
-              {question.explanation && (
-                <div>
-                  <h4 className="font-bold text-slate-600 text-sm mb-2 flex items-center gap-1">
-                    <span className="text-base">📖</span> 해설
-                  </h4>
+
+              {hasExplanation && (
+                <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4">
+                  <p className="text-xs font-extrabold text-amber-700 mb-2 flex items-center gap-1">
+                    <span>📖</span> 해설
+                  </p>
                   {renderExplanation(question.explanation)}
                 </div>
               )}
-            </div>
+            </>
           ) : (
-            <div className="space-y-4">
-              {/* 1. 정답/오답 결과 */}
-              <div className={`flex items-center gap-3 rounded-xl p-3 ${isCorrect ? 'bg-emerald-50' : 'bg-red-50'}`}>
-                <span className="text-3xl">{isCorrect ? '✅' : '❌'}</span>
+            /* ── 일반 문제 ── */
+            <>
+              {/* ① 정답/오답 결과 */}
+              <div className={`flex items-center gap-3 rounded-2xl p-4 ${isCorrect ? 'bg-emerald-50 border border-emerald-200' : 'bg-red-50 border border-red-200'}`}>
+                <span className="text-4xl">{isCorrect ? '✅' : '❌'}</span>
                 <div>
-                  <p className={`font-bold text-sm ${isCorrect ? 'text-emerald-700' : 'text-red-700'}`}>
+                  <p className={`font-extrabold text-base ${isCorrect ? 'text-emerald-700' : 'text-red-600'}`}>
                     {isCorrect ? '정답입니다!' : '오답입니다'}
                   </p>
-                  <p className="text-xs text-slate-500">
-                    {isCorrect ? '잘하셨어요!' : `내 답: ${userAnswer} | 정답: ${question.correctAnswer}`}
-                  </p>
+                  {!isCorrect && (
+                    <p className="text-xs text-slate-500 mt-0.5">
+                      내 답: <span className="font-bold text-red-500">{userAnswer}</span>
+                      <span className="mx-1">→</span>
+                      정답: <span className="font-bold text-emerald-600">{question.correctAnswer}</span>
+                    </p>
+                  )}
+                  {isCorrect && <p className="text-xs text-emerald-500 mt-0.5">잘하셨어요! 계속 유지하세요 👍</p>}
                 </div>
               </div>
 
-              {/* 2. 정답 표시 */}
-              <div className="bg-slate-50 rounded-xl p-3">
-                <p className="text-xs font-bold text-slate-500 mb-1">✨ 정답</p>
-                <p className="text-sm font-semibold text-slate-800">
-                  <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500 text-white text-xs font-bold mr-2">
-                    {question.correctAnswer}
-                  </span>
-                  {question.choices.find(c => c.key === question.correctAnswer)?.enText || ''}
-                </p>
-                {question.choices.find(c => c.key === question.correctAnswer)?.koText && (
-                  <p className="text-xs text-slate-500 ml-8 mt-0.5">
-                    {question.choices.find(c => c.key === question.correctAnswer)?.koText}
-                  </p>
-                )}
-              </div>
+              {/* ② 정답 보기 */}
+              {correctChoice && (
+                <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+                  <p className="text-xs font-extrabold text-slate-500 mb-2">✨ 정답</p>
+                  <div className="flex items-start gap-2">
+                    <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-emerald-500 text-white text-xs font-extrabold shrink-0 mt-0.5">
+                      {question.correctAnswer}
+                    </span>
+                    <div>
+                      <p className="text-sm font-semibold text-slate-800 leading-snug">{correctChoice.enText}</p>
+                      {correctChoice.koText && (
+                        <p className="text-xs text-slate-500 mt-1">{correctChoice.koText}</p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
 
-              {/* 3. 해설 */}
-              {question.explanation && (
-                <div>
-                  <h4 className="font-bold text-slate-600 text-sm mb-2 flex items-center gap-1">
-                    <span className="text-base">📖</span> 해설
-                  </h4>
+              {/* ③ 해설 (문제은행 우선) */}
+              {hasExplanation && (
+                <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4">
+                  <p className="text-xs font-extrabold text-amber-700 mb-2 flex items-center gap-1">
+                    <span>📖</span> 해설
+                  </p>
                   {renderExplanation(question.explanation)}
                 </div>
               )}
 
-              {/* 4. 용어 정리 */}
+              {!hasExplanation && (
+                <div className="bg-slate-50 border border-dashed border-slate-300 rounded-2xl p-3 text-center">
+                  <p className="text-xs text-slate-400">이 문제는 별도 해설이 없습니다. 아래 관련 이론을 참고하세요.</p>
+                </div>
+              )}
+
+              {/* ④ 핵심 용어 */}
               {question.vocabulary?.length > 0 && (
-                <div className="bg-sky-50 rounded-xl p-3">
-                  <h4 className="font-bold text-sky-700 text-sm mb-2 flex items-center gap-1">
+                <div className="bg-sky-50 border border-sky-200 rounded-2xl p-4">
+                  <p className="text-xs font-extrabold text-sky-700 mb-3 flex items-center gap-1">
                     <span>📚</span> 핵심 용어
-                  </h4>
-                  <div className="space-y-2">
+                  </p>
+                  <div className="space-y-2.5">
                     {question.vocabulary.map((v, i) => (
-                      <div key={i} className="border-l-2 border-sky-300 pl-2">
-                        <p className="text-xs font-bold text-sky-700">{v.term}</p>
-                        <p className="text-xs text-slate-600 mt-0.5">{v.definition}</p>
+                      <div key={i} className="flex gap-3">
+                        <div className="w-1.5 rounded-full bg-sky-400 shrink-0 my-1" />
+                        <div>
+                          <p className="text-xs font-extrabold text-sky-700">{v.term}</p>
+                          <p className="text-xs text-slate-600 mt-0.5 leading-relaxed">{v.definition}</p>
+                        </div>
                       </div>
                     ))}
                   </div>
                 </div>
               )}
+            </>
+          )}
+
+          {/* ⑤ 관련 이론 (이론파일 기반, 해설 없으면 첫번째 펼침) */}
+          {relatedTopics.length > 0 && (
+            <div>
+              <div className="flex items-center gap-2 mb-3">
+                <div className="h-px flex-1 bg-slate-200" />
+                <p className="text-xs font-extrabold text-slate-500 px-2">
+                  📘 관련 이론 ({relatedTopics.length}개 섹션)
+                </p>
+                <div className="h-px flex-1 bg-slate-200" />
+              </div>
+              <div className="space-y-2">
+                {relatedTopics.map((item, i) => (
+                  <TheoryTopicBlock
+                    key={i}
+                    chapter={item.chapter}
+                    topic={item.topic}
+                    defaultOpen={i === 0}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* 이론 섹션도 없을 때 */}
+          {relatedTopics.length === 0 && !hasExplanation && (
+            <div className="bg-slate-50 rounded-2xl p-4 text-center">
+              <p className="text-xs text-slate-400">관련 이론 섹션을 찾을 수 없습니다.</p>
             </div>
           )}
         </div>
 
-        {/* 다음 문제 버튼 */}
-        <div className="p-4 border-t border-slate-100">
+        {/* 하단 버튼 */}
+        <div className="px-4 py-4 border-t border-slate-100 shrink-0">
           <button
             onClick={onNext}
-            className="w-full h-12 bg-sky-500 hover:bg-sky-600 active:bg-sky-700 text-white font-bold rounded-2xl text-sm transition-colors"
+            className="w-full h-13 bg-sky-500 hover:bg-sky-600 active:bg-sky-700 text-white font-extrabold rounded-2xl text-sm transition-colors"
           >
             다음 문제 →
           </button>

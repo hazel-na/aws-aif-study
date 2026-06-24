@@ -56,17 +56,22 @@ const useStore = create(
       // ── 세션 시작
       startSession: (mode = 'all') => {
         const { wrongQuestions, scrappedQuestions, settings } = get();
+        // 빈 문제(문제 텍스트 없음) 제외
+        const validIds = allQuestions
+          .filter(q => q.englishQuestion && q.englishQuestion.trim().length > 5)
+          .map(q => q.id);
+
         let ids;
         if (mode === 'wrong') {
           ids = wrongQuestions.length > 0
-            ? [...wrongQuestions]
-            : allQuestions.map(q => q.id);
+            ? wrongQuestions.filter(id => validIds.includes(id))
+            : validIds;
         } else if (mode === 'scrapped') {
           ids = scrappedQuestions.length > 0
-            ? [...scrappedQuestions]
-            : allQuestions.map(q => q.id);
+            ? scrappedQuestions.filter(id => validIds.includes(id))
+            : validIds;
         } else {
-          ids = allQuestions.map(q => q.id);
+          ids = validIds;
         }
 
         if (settings.randomOrder) ids = shuffle(ids);
@@ -139,7 +144,7 @@ const useStore = create(
         const isHotspot = question.isHotspot || question.correctAnswer === 'HOTSPOT';
         const isCorrect = isHotspot ? false : userAnswer === question.correctAnswer;
 
-        const { progress, wrongQuestions } = get();
+        const { progress, wrongQuestions, scrappedQuestions } = get();
 
         // 진도 기록
         const newProgress = {
@@ -149,14 +154,18 @@ const useStore = create(
 
         // 오답 관리
         let newWrong = [...wrongQuestions];
+        let newScrapped = [...scrappedQuestions];
         if (!isCorrect && !isHotspot) {
           if (!newWrong.includes(questionId)) newWrong.push(questionId);
+          // 틀린 문제 자동 스크랩
+          if (!newScrapped.includes(questionId)) newScrapped.push(questionId);
         } else if (isCorrect) {
           newWrong = newWrong.filter(id => id !== questionId);
+          // 정답 시 자동 스크랩 해제 (수동 스크랩은 유지 안 함)
         }
 
-        set({ progress: newProgress, wrongQuestions: newWrong });
-        scheduleSyncToCloud({ progress: newProgress, scrappedQuestions: get().scrappedQuestions, wrongQuestions: newWrong });
+        set({ progress: newProgress, wrongQuestions: newWrong, scrappedQuestions: newScrapped });
+        scheduleSyncToCloud({ progress: newProgress, scrappedQuestions: newScrapped, wrongQuestions: newWrong });
         return isCorrect;
       },
 

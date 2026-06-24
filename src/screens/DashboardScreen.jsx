@@ -53,6 +53,12 @@ export default function DashboardScreen() {
             >
               📖 이론
             </button>
+            <button
+              onClick={() => navigate('/review')}
+              className="flex items-center gap-1 bg-amber-100 text-amber-700 font-bold text-xs px-3 py-1.5 rounded-full active:scale-95 transition-transform"
+            >
+              ⭐ 복습
+            </button>
             <AuthButton />
           </div>
         </div>
@@ -64,19 +70,27 @@ export default function DashboardScreen() {
           <ProgressRing answered={overall.answered} total={overall.total} size={180} />
         </div>
 
-        {/* 이론 학습 배너 */}
-        <button
-          onClick={() => navigate('/theory')}
-          className="w-full bg-gradient-to-r from-sky-500 to-blue-600 rounded-2xl p-4 text-left shadow-md active:scale-[0.98] transition-transform"
-        >
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-white font-extrabold text-base">📚 이론 먼저 학습하기</p>
-              <p className="text-sky-100 text-xs mt-1">PDF 전체 내용 · 5챕터 · 28섹션</p>
-            </div>
-            <span className="text-white text-2xl">›</span>
-          </div>
-        </button>
+        {/* 배너 영역 */}
+        <div className="grid grid-cols-2 gap-3">
+          <button
+            onClick={() => navigate('/theory')}
+            className="bg-gradient-to-br from-sky-500 to-blue-600 rounded-2xl p-4 text-left shadow-md active:scale-[0.97] transition-transform"
+          >
+            <p className="text-2xl mb-1">📚</p>
+            <p className="text-white font-extrabold text-sm">이론 학습</p>
+            <p className="text-sky-100 text-xs mt-0.5">5챕터 · 28섹션</p>
+          </button>
+          <button
+            onClick={() => navigate('/review')}
+            className="bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl p-4 text-left shadow-md active:scale-[0.97] transition-transform"
+          >
+            <p className="text-2xl mb-1">⭐</p>
+            <p className="text-white font-extrabold text-sm">복습 노트</p>
+            <p className="text-amber-100 text-xs mt-0.5">
+              {scrappedQuestions.length > 0 ? `스크랩 ${scrappedQuestions.length}문제` : '스크랩·오답 모음'}
+            </p>
+          </button>
+        </div>
 
         {/* 모드 탭 */}
         <div className="bg-white rounded-2xl p-1.5 flex gap-1 shadow-sm">

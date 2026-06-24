@@ -4,6 +4,7 @@ import DashboardScreen from './screens/DashboardScreen';
 import QuizScreen from './screens/QuizScreen';
 import ResultScreen from './screens/ResultScreen';
 import TheoryScreen from './screens/TheoryScreen';
+import ReviewScreen from './screens/ReviewScreen';
 import useAuthStore from './store/useAuthStore';
 import useStore from './store/useStore';
 
@@ -40,6 +41,7 @@ export default function App() {
           <Route path="/result" element={<ResultScreen />} />
           <Route path="/theory" element={<TheoryScreen />} />
           <Route path="/theory/:chapterId" element={<TheoryScreen />} />
+          <Route path="/review" element={<ReviewScreen />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>

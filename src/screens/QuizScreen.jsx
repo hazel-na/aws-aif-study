@@ -31,6 +31,7 @@ export default function QuizScreen() {
   const navigate = useNavigate();
   const [selectedKey, setSelectedKey] = useState(null);
   const [submitted, setSubmitted] = useState(false);
+  const [showSheet, setShowSheet] = useState(false);
   const [showNavigator, setShowNavigator] = useState(false);
 
   const session = useStore(s => s.currentSession);
@@ -56,6 +57,7 @@ export default function QuizScreen() {
       prevIdRef.current = question.id;
       setSelectedKey(null);
       setSubmitted(false);
+      setShowSheet(false);
     }
   }, [question?.id]);
 
@@ -79,10 +81,12 @@ export default function QuizScreen() {
       submitAnswer(question.id, selectedKey);
     }
     setSubmitted(true);
+    setShowSheet(true);
   };
 
   const handleHotspotView = () => {
     setSubmitted(true);
+    setShowSheet(true);
   };
 
   const handleNext = () => {
@@ -224,6 +228,23 @@ export default function QuizScreen() {
             </button>
           )
         )}
+        {/* 해설 닫은 후 보이는 버튼들 */}
+        {submitted && !showSheet && (
+          <>
+            <button
+              onClick={() => setShowSheet(true)}
+              className="w-full h-12 bg-slate-100 text-slate-600 font-bold rounded-2xl text-sm hover:bg-slate-200 active:bg-slate-300 transition-colors"
+            >
+              📖 해설 보기
+            </button>
+            <button
+              onClick={handleNext}
+              className="w-full h-12 bg-sky-500 text-white font-bold rounded-2xl text-sm hover:bg-sky-600 active:bg-sky-700 transition-colors"
+            >
+              다음 문제 →
+            </button>
+          </>
+        )}
 
         {/* 네비게이터 토글 */}
         <button
@@ -236,13 +257,13 @@ export default function QuizScreen() {
       </div>
 
       {/* 바텀 시트 (해설) */}
-      {submitted && (
+      {submitted && showSheet && (
         <BottomSheet
           question={question}
           userAnswer={selectedKey}
           isCorrect={!isHotspot && selectedKey === question.correctAnswer}
           onNext={handleNext}
-          onClose={() => {}} // 닫기 없음 (다음만)
+          onClose={() => setShowSheet(false)}
         />
       )}
 
