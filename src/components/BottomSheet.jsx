@@ -118,7 +118,46 @@ function TheoryTopicBlock({ chapter, topic, defaultOpen = false }) {
 
 export default function BottomSheet({ question, userAnswer, isCorrect, onNext, onClose }) {
   const [visible, setVisible] = useState(false);
+  const [dragY, setDragY] = useState(0);      // 아래로 드래그한 거리(px)
+  const [dragging, setDragging] = useState(false);
   const ref = useRef(null);
+  const dragStartRef = useRef(null);
+
+  // ── 핸들/헤더를 아래로 쓸어내려 닫기 ──
+  const onDragStart = (clientY) => {
+    dragStartRef.current = clientY;
+    setDragging(true);
+  };
+  const onDragMove = (clientY) => {
+    if (dragStartRef.current == null) return;
+    const delta = clientY - dragStartRef.current;
+    setDragY(Math.max(0, delta)); // 아래로만 따라 내려감
+  };
+  const onDragEnd = () => {
+    if (dragStartRef.current == null) return;
+    const shouldClose = dragY > 110; // 충분히 내리면 닫기
+    dragStartRef.current = null;
+    setDragging(false);
+    if (shouldClose) {
+      setVisible(false);
+      setTimeout(onClose, 200);
+    } else {
+      setDragY(0); // 원위치로 스냅
+    }
+  };
+
+  const handleProps = {
+    onTouchStart: (e) => onDragStart(e.touches[0].clientY),
+    onTouchMove: (e) => onDragMove(e.touches[0].clientY),
+    onTouchEnd: onDragEnd,
+    onMouseDown: (e) => {
+      onDragStart(e.clientY);
+      const move = (ev) => onDragMove(ev.clientY);
+      const up = () => { onDragEnd(); window.removeEventListener('mousemove', move); window.removeEventListener('mouseup', up); };
+      window.addEventListener('mousemove', move);
+      window.addEventListener('mouseup', up);
+    },
+  };
 
   const relatedTopics = findRelatedTopics(question);
   const hasExplanation = question.explanation && question.explanation.trim().length > 0;
@@ -128,7 +167,14 @@ export default function BottomSheet({ question, userAnswer, isCorrect, onNext, o
     return () => clearTimeout(t);
   }, []);
 
-  const isHotspot = question.isHotspot || question.correctAnswer === 'HOTSPOT' || question.correctAnswer === 'UNKNOWN';
+  const answerType = question.answerType
+    || (question.correctAnswer === 'HOTSPOT' || question.correctAnswer === 'UNKNOWN' || question.isHotspot ? 'matching' : 'single');
+  const isReveal = answerType === 'matching' || answerType === 'ordering';
+  const isMulti = answerType === 'multi';
+  const correctKeys = isMulti
+    ? (question.correctAnswers || String(question.correctAnswer).split(/[,\s]+/).filter(Boolean))
+    : [question.correctAnswer];
+  const userKeys = Array.isArray(userAnswer) ? userAnswer : (userAnswer != null ? [userAnswer] : []);
 
   // 해설 텍스트 → vocab 용어 툴팁 처리
   const renderExplanation = (text) => {
@@ -160,7 +206,7 @@ export default function BottomSheet({ question, userAnswer, isCorrect, onNext, o
     );
   };
 
-  const correctChoice = question.choices?.find(c => c.key === question.correctAnswer);
+  const correctChoices = question.choices?.filter(c => correctKeys.includes(c.key)) || [];
 
   return (
     <>
@@ -168,19 +214,28 @@ export default function BottomSheet({ question, userAnswer, isCorrect, onNext, o
 
       <div
         ref={ref}
+        style={
+          dragging
+            ? { transform: `translateY(${dragY}px)`, transition: 'none' }
+            : { transform: visible ? `translateY(${dragY}px)` : 'translateY(100%)' }
+        }
         className={`
           fixed bottom-0 left-0 right-0 z-50
           bg-white rounded-t-3xl shadow-2xl
           max-h-[88dvh] flex flex-col
-          transition-transform duration-300 ease-out
-          ${visible ? 'translate-y-0' : 'translate-y-full'}
+          ${dragging ? '' : 'transition-transform duration-300 ease-out'}
         `}
       >
-        {/* 핸들 + 닫기 */}
-        <div className="flex justify-center items-center pt-3 pb-2 relative shrink-0">
-          <div className="w-10 h-1 rounded-full bg-slate-200" />
+        {/* 핸들 + 닫기 (핸들을 아래로 쓸어내리면 닫힘) */}
+        <div
+          {...handleProps}
+          className="flex justify-center items-center pt-3 pb-3 relative shrink-0 cursor-grab active:cursor-grabbing touch-none select-none"
+        >
+          <div className="w-12 h-1.5 rounded-full bg-slate-300" />
           <button
             onClick={onClose}
+            onTouchStart={(e) => e.stopPropagation()}
+            onMouseDown={(e) => e.stopPropagation()}
             className="absolute right-4 w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 text-slate-400 text-sm font-bold hover:bg-slate-200 active:scale-90 transition-all"
             aria-label="닫기"
           >
@@ -191,16 +246,47 @@ export default function BottomSheet({ question, userAnswer, isCorrect, onNext, o
         {/* 스크롤 영역 */}
         <div className="overflow-y-auto flex-1 px-4 pb-4 space-y-4">
 
-          {isHotspot ? (
-            /* ── HOTSPOT/매칭형 ── */
+          {isReveal ? (
+            /* ── 매칭형 / 순서 배열형 ── */
             <>
               <div className="flex items-center gap-3 bg-purple-50 rounded-2xl p-4">
-                <span className="text-3xl">📋</span>
+                <span className="text-3xl">{answerType === 'ordering' ? '🔢' : '📋'}</span>
                 <div>
-                  <p className="font-extrabold text-purple-700 text-sm">매칭/순서형 문제</p>
-                  <p className="text-xs text-purple-500 mt-0.5">서술형 답안입니다. 아래 해설을 참고하세요.</p>
+                  <p className="font-extrabold text-purple-700 text-sm">
+                    {answerType === 'ordering' ? '순서 배열형 정답' : '매칭형 정답'}
+                  </p>
+                  <p className="text-xs text-purple-500 mt-0.5">아래 정답표와 해설로 학습하세요.</p>
                 </div>
               </div>
+
+              {/* 정답표 */}
+              {question.hotspotItems?.length > 0 && (
+                <div className="bg-white border border-purple-200 rounded-2xl overflow-hidden">
+                  <div className="bg-purple-100 px-4 py-2">
+                    <p className="text-xs font-extrabold text-purple-700">
+                      ✅ {answerType === 'ordering' ? '올바른 순서' : '정답 매칭'}
+                    </p>
+                  </div>
+                  <ul className="divide-y divide-slate-100">
+                    {question.hotspotItems.map((it, i) => (
+                      <li key={i} className="px-4 py-3 flex items-start gap-3">
+                        <span className="shrink-0 inline-flex items-center justify-center min-w-7 h-7 px-2 rounded-full bg-purple-500 text-white text-xs font-extrabold mt-0.5">
+                          {answerType === 'ordering' ? i + 1 : '→'}
+                        </span>
+                        <div className="min-w-0">
+                          <p className="text-sm text-slate-800 leading-snug">{it.promptKo || it.prompt}</p>
+                          {answerType !== 'ordering' && it.answer && (
+                            <p className="text-xs font-bold text-purple-600 mt-1">정답: {it.answer}</p>
+                          )}
+                          {it.note && (
+                            <p className="text-xs text-slate-500 mt-1 leading-relaxed">{it.note}</p>
+                          )}
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               {hasExplanation && (
                 <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4">
@@ -223,9 +309,9 @@ export default function BottomSheet({ question, userAnswer, isCorrect, onNext, o
                   </p>
                   {!isCorrect && (
                     <p className="text-xs text-slate-500 mt-0.5">
-                      내 답: <span className="font-bold text-red-500">{userAnswer}</span>
+                      내 답: <span className="font-bold text-red-500">{userKeys.join(', ') || '-'}</span>
                       <span className="mx-1">→</span>
-                      정답: <span className="font-bold text-emerald-600">{question.correctAnswer}</span>
+                      정답: <span className="font-bold text-emerald-600">{correctKeys.join(', ')}</span>
                     </p>
                   )}
                   {isCorrect && <p className="text-xs text-emerald-500 mt-0.5">잘하셨어요! 계속 유지하세요 👍</p>}
@@ -233,20 +319,24 @@ export default function BottomSheet({ question, userAnswer, isCorrect, onNext, o
               </div>
 
               {/* ② 정답 보기 */}
-              {correctChoice && (
-                <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4">
-                  <p className="text-xs font-extrabold text-slate-500 mb-2">✨ 정답</p>
-                  <div className="flex items-start gap-2">
-                    <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-emerald-500 text-white text-xs font-extrabold shrink-0 mt-0.5">
-                      {question.correctAnswer}
-                    </span>
-                    <div>
-                      <p className="text-sm font-semibold text-slate-800 leading-snug">{correctChoice.enText}</p>
-                      {correctChoice.koText && (
-                        <p className="text-xs text-slate-500 mt-1">{correctChoice.koText}</p>
-                      )}
+              {correctChoices.length > 0 && (
+                <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-3">
+                  <p className="text-xs font-extrabold text-slate-500">
+                    ✨ 정답{isMulti ? ` (${correctKeys.length}개)` : ''}
+                  </p>
+                  {correctChoices.map((cc) => (
+                    <div key={cc.key} className="flex items-start gap-2">
+                      <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-emerald-500 text-white text-xs font-extrabold shrink-0 mt-0.5">
+                        {cc.key}
+                      </span>
+                      <div>
+                        <p className="text-sm font-semibold text-slate-800 leading-snug">{cc.enText}</p>
+                        {cc.koText && (
+                          <p className="text-xs text-slate-500 mt-1">{cc.koText}</p>
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
               )}
 

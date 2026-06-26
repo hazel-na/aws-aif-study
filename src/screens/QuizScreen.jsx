@@ -29,7 +29,7 @@ function Timer({ startTime, timeLimit }) {
 
 export default function QuizScreen() {
   const navigate = useNavigate();
-  const [selectedKey, setSelectedKey] = useState(null);
+  const [selectedKeys, setSelectedKeys] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const [showSheet, setShowSheet] = useState(false);
   const [showNavigator, setShowNavigator] = useState(false);
@@ -55,7 +55,7 @@ export default function QuizScreen() {
   useEffect(() => {
     if (question && question.id !== prevIdRef.current) {
       prevIdRef.current = question.id;
-      setSelectedKey(null);
+      setSelectedKeys([]);
       setSubmitted(false);
       setShowSheet(false);
     }
@@ -63,30 +63,55 @@ export default function QuizScreen() {
 
   if (!session || !question) return null;
 
-  const isHotspot = question.isHotspot || question.correctAnswer === 'HOTSPOT' || question.correctAnswer === 'UNKNOWN';
+  // 답안 유형: single | multi | matching | ordering
+  const answerType = question.answerType
+    || (question.correctAnswer === 'HOTSPOT' || question.correctAnswer === 'UNKNOWN' || question.isHotspot ? 'matching' : 'single');
+  const isMulti = answerType === 'multi';
+  const isReveal = answerType === 'matching' || answerType === 'ordering'; // 채점 없이 해설만 보는 유형
+  const correctKeys = isMulti
+    ? (question.correctAnswers || String(question.correctAnswer).split(/[,\s]+/).filter(Boolean))
+    : [question.correctAnswer];
+  const requiredCount = isMulti ? correctKeys.length : 1;
+
   const isScrapped = scrappedQuestions.includes(question.id);
   const { sessionQuestionIds, currentIndex, startTime, timeLimit, mode } = session;
   const totalInSession = sessionQuestionIds.length;
 
   const handleSelect = (key) => {
     if (submitted) return;
-    setSelectedKey(key);
+    if (isMulti) {
+      setSelectedKeys((prev) =>
+        prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key]
+      );
+    } else {
+      setSelectedKeys([key]);
+    }
   };
+
+  const canSubmit = isMulti ? selectedKeys.length === requiredCount : selectedKeys.length === 1;
 
   const handleSubmit = () => {
-    if (!selectedKey && !isHotspot) return;
-    if (submitted) return;
+    if (isReveal) return;
+    if (!canSubmit || submitted) return;
 
-    if (!isHotspot && selectedKey) {
-      submitAnswer(question.id, selectedKey);
-    }
+    submitAnswer(question.id, isMulti ? [...selectedKeys].sort() : selectedKeys[0]);
     setSubmitted(true);
     setShowSheet(true);
   };
 
-  const handleHotspotView = () => {
+  const handleReveal = () => {
     setSubmitted(true);
     setShowSheet(true);
+  };
+
+  const isAnswerCorrect = () => {
+    if (isReveal) return false;
+    if (isMulti) {
+      const a = [...selectedKeys].sort().join(',');
+      const b = [...correctKeys].sort().join(',');
+      return a === b;
+    }
+    return selectedKeys[0] === question.correctAnswer;
   };
 
   const handleNext = () => {
@@ -142,9 +167,14 @@ export default function QuizScreen() {
           <span className="text-xs bg-sky-100 text-sky-700 font-semibold px-2.5 py-1 rounded-full">
             #{question.id}
           </span>
-          {isHotspot && (
+          {isReveal && (
             <span className="text-xs bg-purple-100 text-purple-700 font-semibold px-2.5 py-1 rounded-full">
-              매칭/순서형
+              {answerType === 'ordering' ? '순서 배열형' : '매칭형'}
+            </span>
+          )}
+          {isMulti && (
+            <span className="text-xs bg-amber-100 text-amber-700 font-semibold px-2.5 py-1 rounded-full">
+              복수 정답 · {requiredCount}개 선택
             </span>
           )}
         </div>
@@ -169,25 +199,62 @@ export default function QuizScreen() {
           )}
         </div>
 
-        {/* HOTSPOT 안내 */}
-        {isHotspot && !submitted && (
-          <div className="bg-purple-50 rounded-2xl p-4">
-            <p className="text-sm text-purple-700 font-medium mb-1">📋 매칭/순서형 문제</p>
-            <p className="text-xs text-purple-600">이 문제는 서술형 답안입니다. 해설을 확인하세요.</p>
+        {/* 복수 정답 안내 */}
+        {isMulti && !submitted && (
+          <div className="bg-amber-50 rounded-2xl px-4 py-3">
+            <p className="text-xs text-amber-700 font-medium">
+              ✅ 정답이 {requiredCount}개입니다. {requiredCount}개를 모두 선택한 뒤 제출하세요.
+              <span className="ml-1 text-amber-500">({selectedKeys.length}/{requiredCount} 선택됨)</span>
+            </p>
+          </div>
+        )}
+
+        {/* 매칭/순서형 안내 + 항목 표시 */}
+        {isReveal && !submitted && (
+          <div className="bg-purple-50 rounded-2xl p-4 space-y-3">
+            <div>
+              <p className="text-sm text-purple-700 font-medium mb-1">
+                📋 {answerType === 'ordering' ? '순서 배열형 문제' : '매칭형 문제'}
+              </p>
+              <p className="text-xs text-purple-600">
+                {answerType === 'ordering'
+                  ? '아래 항목들을 올바른 순서로 배열하는 문제입니다. 직접 순서를 생각해본 뒤 해설로 정답을 확인하세요.'
+                  : '아래 각 항목에 알맞은 보기를 연결하는 문제입니다. 직접 매칭을 생각해본 뒤 해설로 정답을 확인하세요.'}
+              </p>
+            </div>
+            {(question.hotspotItems?.length > 0) && (
+              <ul className="space-y-2">
+                {question.hotspotItems.map((it, i) => (
+                  <li key={i} className="bg-white rounded-xl px-3 py-2 text-xs text-slate-700 leading-relaxed border border-purple-100">
+                    {answerType === 'ordering' ? '•' : `${i + 1}.`} {it.promptKo || it.prompt}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {question.hotspotOptions?.length > 0 && (
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                {question.hotspotOptions.map((opt, i) => (
+                  <span key={i} className="text-xs font-medium px-2.5 py-1 rounded-full bg-purple-100 text-purple-700">
+                    {opt}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
         )}
 
         {/* 선택지 */}
-        {!isHotspot && question.choices.length > 0 && (
+        {!isReveal && question.choices?.length > 0 && (
           <div className="space-y-2.5">
             {question.choices.map((choice) => {
-              const isCorrectChoice = choice.key === question.correctAnswer;
-              const isUserChoice = choice.key === selectedKey;
+              const isCorrectChoice = correctKeys.includes(choice.key);
+              const isUserChoice = selectedKeys.includes(choice.key);
               return (
                 <AnswerOption
                   key={choice.key}
                   choice={choice}
-                  selected={selectedKey === choice.key}
+                  multi={isMulti}
+                  selected={selectedKeys.includes(choice.key)}
                   submitted={submitted}
                   isCorrect={submitted && isCorrectChoice}
                   isUserChoice={isUserChoice}
@@ -207,24 +274,24 @@ export default function QuizScreen() {
       <div className="bg-white border-t border-slate-100 px-4 py-3 shrink-0 space-y-2">
         {/* 제출 버튼 */}
         {!submitted && (
-          isHotspot ? (
+          isReveal ? (
             <button
-              onClick={handleHotspotView}
+              onClick={handleReveal}
               className="w-full h-12 bg-purple-500 text-white font-bold rounded-2xl text-sm"
             >
-              📖 해설 보기
+              📖 정답·해설 보기
             </button>
           ) : (
             <button
               onClick={handleSubmit}
-              disabled={!selectedKey}
+              disabled={!canSubmit}
               className="
                 w-full h-12 bg-sky-500 text-white font-bold rounded-2xl text-sm
                 disabled:bg-slate-200 disabled:text-slate-400
                 transition-colors active:bg-sky-700
               "
             >
-              답 제출
+              답 제출{isMulti ? ` (${selectedKeys.length}/${requiredCount})` : ''}
             </button>
           )
         )}
@@ -260,8 +327,8 @@ export default function QuizScreen() {
       {submitted && showSheet && (
         <BottomSheet
           question={question}
-          userAnswer={selectedKey}
-          isCorrect={!isHotspot && selectedKey === question.correctAnswer}
+          userAnswer={isMulti ? selectedKeys : selectedKeys[0]}
+          isCorrect={isAnswerCorrect()}
           onNext={handleNext}
           onClose={() => setShowSheet(false)}
         />

@@ -1,5 +1,6 @@
 export default function AnswerOption({
   choice,
+  multi = false,
   selected,
   submitted,
   isCorrect,
@@ -38,9 +39,9 @@ export default function AnswerOption({
         ${!submitted ? 'active:bg-sky-100 cursor-pointer' : 'cursor-default'}
       `}
     >
-      {/* 선택지 키 뱃지 */}
+      {/* 선택지 키 뱃지 (복수정답은 사각 체크박스 형태) */}
       <span className={`
-        shrink-0 w-7 h-7 rounded-full flex items-center justify-center
+        shrink-0 w-7 h-7 ${multi ? 'rounded-md' : 'rounded-full'} flex items-center justify-center
         text-sm font-bold border-2
         ${submitted && isCorrect
           ? 'bg-emerald-500 border-emerald-500 text-white'

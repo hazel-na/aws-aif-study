@@ -56,9 +56,13 @@ const useStore = create(
       // ── 세션 시작
       startSession: (mode = 'all') => {
         const { wrongQuestions, scrappedQuestions, settings } = get();
-        // 빈 문제(문제 텍스트 없음) 제외
+        // 빈 문제(문제 텍스트 없음) 제외 — 한글 또는 영문 문제 텍스트가 있으면 포함
         const validIds = allQuestions
-          .filter(q => q.englishQuestion && q.englishQuestion.trim().length > 5)
+          .filter(q => {
+            const ko = (q.koreanQuestion || '').trim();
+            const en = (q.englishQuestion || '').trim();
+            return ko.length > 5 || en.length > 5;
+          })
           .map(q => q.id);
 
         let ids;
@@ -141,8 +145,25 @@ const useStore = create(
         const question = allQuestions.find(q => q.id === questionId);
         if (!question) return;
 
-        const isHotspot = question.isHotspot || question.correctAnswer === 'HOTSPOT';
-        const isCorrect = isHotspot ? false : userAnswer === question.correctAnswer;
+        const answerType = question.answerType
+          || (question.correctAnswer === 'HOTSPOT' || question.correctAnswer === 'UNKNOWN' || question.isHotspot ? 'matching' : 'single');
+        const isReveal = answerType === 'matching' || answerType === 'ordering';
+
+        let isCorrect;
+        if (isReveal) {
+          isCorrect = false;
+        } else if (answerType === 'multi') {
+          const correctKeys = question.correctAnswers
+            || String(question.correctAnswer).split(/[,\s]+/).filter(Boolean);
+          const userKeys = Array.isArray(userAnswer)
+            ? userAnswer
+            : String(userAnswer).split(/[,\s]+/).filter(Boolean);
+          isCorrect = correctKeys.length === userKeys.length
+            && [...correctKeys].sort().join(',') === [...userKeys].sort().join(',');
+        } else {
+          isCorrect = userAnswer === question.correctAnswer;
+        }
+        const isHotspot = isReveal;
 
         const { progress, wrongQuestions, scrappedQuestions } = get();
 

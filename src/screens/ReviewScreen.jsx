@@ -97,9 +97,13 @@ function ReviewCard({ question, progressEntry, index }) {
   const relatedTopics = findRelatedTopics(question);
 
   const isCorrect = progressEntry?.isCorrect;
-  const userAnswer = progressEntry?.userAnswer;
+  const rawUserAnswer = progressEntry?.userAnswer;
+  const userAnswer = Array.isArray(rawUserAnswer) ? rawUserAnswer.join(', ') : rawUserAnswer;
   const hasExplanation = question.explanation && question.explanation.trim().length > 0;
-  const correctChoice = question.choices?.find(c => c.key === question.correctAnswer);
+  const correctKeys = question.correctAnswers
+    || (question.correctAnswer ? String(question.correctAnswer).split(/[,\s]+/).filter(Boolean) : []);
+  const correctAnswerLabel = correctKeys.join(', ');
+  const correctChoices = question.choices?.filter(c => correctKeys.includes(c.key)) || [];
 
   const CATEGORY_META = {
     'ml-basics':     { label: 'AI/ML 기초',   color: 'bg-sky-100 text-sky-700' },
@@ -157,7 +161,7 @@ function ReviewCard({ question, progressEntry, index }) {
                   <p className="text-red-600 font-bold">
                     내 답: <span className="bg-red-100 px-1 rounded">{userAnswer}</span>
                     <span className="mx-1">→</span>
-                    정답: <span className="bg-emerald-100 text-emerald-700 px-1 rounded">{question.correctAnswer}</span>
+                    정답: <span className="bg-emerald-100 text-emerald-700 px-1 rounded">{correctAnswerLabel}</span>
                   </p>
                 )}
                 {isCorrect && <p className="text-emerald-700 font-bold">정답 맞힘</p>}
@@ -166,18 +170,20 @@ function ReviewCard({ question, progressEntry, index }) {
           )}
 
           {/* 정답 상세 */}
-          {correctChoice && (
-            <div className="bg-slate-50 rounded-xl p-3">
-              <p className="text-xs font-bold text-slate-500 mb-2">✨ 정답</p>
-              <div className="flex items-start gap-2">
-                <span className="w-6 h-6 rounded-full bg-emerald-500 text-white text-xs font-extrabold flex items-center justify-center shrink-0 mt-0.5">
-                  {question.correctAnswer}
-                </span>
-                <div>
-                  <p className="text-sm font-semibold text-slate-800">{correctChoice.enText}</p>
-                  {correctChoice.koText && <p className="text-xs text-slate-500 mt-0.5">{correctChoice.koText}</p>}
+          {correctChoices.length > 0 && (
+            <div className="bg-slate-50 rounded-xl p-3 space-y-2">
+              <p className="text-xs font-bold text-slate-500">✨ 정답</p>
+              {correctChoices.map((cc) => (
+                <div key={cc.key} className="flex items-start gap-2">
+                  <span className="w-6 h-6 rounded-full bg-emerald-500 text-white text-xs font-extrabold flex items-center justify-center shrink-0 mt-0.5">
+                    {cc.key}
+                  </span>
+                  <div>
+                    <p className="text-sm font-semibold text-slate-800">{cc.enText}</p>
+                    {cc.koText && <p className="text-xs text-slate-500 mt-0.5">{cc.koText}</p>}
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
           )}
 
