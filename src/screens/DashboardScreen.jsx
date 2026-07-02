@@ -142,7 +142,7 @@ export default function DashboardScreen() {
         {/* 책갈피 이어풀기 */}
         {bookmark && (
           <div className="bg-white rounded-2xl p-4 shadow-sm border border-emerald-100 flex items-center gap-3">
-            <span className="text-2xl">📑</span>
+            <span className="text-2xl">📌</span>
             <div className="flex-1 min-w-0">
               <p className="font-bold text-slate-700 text-sm">책갈피에서 이어풀기</p>
               <p className="text-xs text-slate-400 mt-0.5">

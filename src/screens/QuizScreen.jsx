@@ -167,7 +167,7 @@ export default function QuizScreen() {
             className={`w-9 h-9 flex items-center justify-center rounded-xl text-lg transition-transform active:scale-90 ${isBookmarked ? 'bg-emerald-100' : ''}`}
             title={isBookmarked ? '책갈피 해제' : '이 문제에 책갈피 저장'}
           >
-            {isBookmarked ? '📑' : '🔖'}
+            <span className={isBookmarked ? '' : 'opacity-40 grayscale'}>📌</span>
           </button>
           <button
             onClick={() => toggleScrapped(question.id)}
