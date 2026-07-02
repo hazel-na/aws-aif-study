@@ -418,22 +418,22 @@
       {
         "key": "A",
         "enText": "Amazon SageMaker Feature Store",
-        "koText": "Amazon SageMaker Feature Store (피처 저장·공유·관리)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon SageMaker Data Wrangler",
-        "koText": "Amazon SageMaker Data Wrangler (데이터 준비·전처리)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon SageMaker Clarify",
-        "koText": "Amazon SageMaker Clarify (편향 탐지·설명가능성)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon SageMaker Model Cards",
-        "koText": "Amazon SageMaker Model Cards (모델 문서화)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 회사가 SageMaker를 사용하여 ML 모델을 만들고자 합니다.회사는 여러 팀에서 모델 개발을 위해 변수(Feature)를 공유하고 관리해야 합니다.이 요구사항을 충족하는 SageMaker 기능은 무엇입니까?",
@@ -502,22 +502,22 @@
       {
         "key": "A",
         "enText": "AWS PrivateLink",
-        "koText": "AWS PrivateLink (VPC 내 프라이빗 연결)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon Macie",
-        "koText": "Amazon Macie (S3 민감정보 탐지)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon CloudFront",
-        "koText": "Amazon CloudFront (콘텐츠 전송 네트워크, CDN)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Internet gateway",
-        "koText": "인터넷 게이트웨이(Internet gateway)"
+        "koText": "인터넷 게이트웨이"
       }
     ],
     "koreanQuestion": "한 금융 기관이 Amazon Bedrock을 사용하여 AI 애플리케이션을 개발하고 있습니다.애플리케이션은 VPC에 호스팅되어 있으며, 규제 준수를 위해 VPC에서 인터넷 트래픽 접근이 금지되어 있습니다.이 요구사항을 충족하는 AWS 서비스/기능은 무엇입니까?",
@@ -930,22 +930,22 @@
       {
         "key": "A",
         "enText": "Temperature",
-        "koText": "Temperature (출력 무작위성 조절 값)"
+        "koText": "온도(Temperature)"
       },
       {
         "key": "B",
         "enText": "Context window",
-        "koText": "컨텍스트 윈도우(Context window, 한 번에 처리 가능한 토큰 양)"
+        "koText": "컨텍스트 윈도우"
       },
       {
         "key": "C",
         "enText": "Batch size",
-        "koText": "배치 크기(Batch size)"
+        "koText": "배치 크기"
       },
       {
         "key": "D",
         "enText": "Model size",
-        "koText": "모델 크기(Model size)"
+        "koText": "모델 크기"
       }
     ],
     "koreanQuestion": "한 회사가 Amazon Bedrock으로 생성형 AI 애플리케이션을 구축하려 합니다.회사는 한 프롬프트에 얼마나 많은 정보를 담을 수 있는지 알고 싶습니다.어떤 요소가 이 결정에 영향을 줍니까?",
@@ -1056,22 +1056,22 @@
       {
         "key": "A",
         "enText": "AWS Audit Manager",
-        "koText": "AWS Audit Manager (감사 증거 수집 자동화)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "AWS CloudTrail",
-        "koText": "AWS CloudTrail (API 호출 로깅·감사)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Fraud Detector",
-        "koText": "Amazon Fraud Detector (사기 탐지)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "AWS Trusted Advisor",
-        "koText": "AWS Trusted Advisor (모범 사례 점검)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "보안 회사가 Amazon Bedrock에서 **파운데이션 모델(FM)**을 실행하고 있습니다.회사는 허가된 사용자만 모델을 호출하도록 하고 싶습니다.또한, FM의 다음 버전을 위해 적절한 IAM 정책과 역할을 설정할 수 있도록 무단 접근 시도를 식별해야 합니다.어떤 AWS 서비스가 이 요구사항을 충족합니까?",
@@ -1140,22 +1140,22 @@
       {
         "key": "A",
         "enText": "AWS Audit Manager",
-        "koText": "AWS Audit Manager (감사 증거 수집 자동화)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "AWS Artifact",
-        "koText": "AWS Artifact (규정 준수 보고서 제공)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "AWS Trusted Advisor",
-        "koText": "AWS Trusted Advisor (모범 사례 점검)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "AWS Data Exchange",
-        "koText": "AWS Data Exchange (서드파티 데이터 구독)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "AI 회사가 주기적으로 **ISV(독립 소프트웨어 공급자)**의 도움을 받아 시스템과 프로세스를 평가합니다.ISV의 규정 준수 보고서가 제공될 때 이메일 알림을 받고자 합니다.어떤 AWS 서비스를 사용해야 합니까?",
@@ -1350,22 +1350,22 @@
       {
         "key": "A",
         "enText": "Amazon Personalize",
-        "koText": "Amazon Personalize (개인화 추천)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon SageMaker JumpStart",
-        "koText": "Amazon SageMaker JumpStart (사전학습 모델 빠른 배포)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "PartyRock, an Amazon Bedrock Playground",
-        "koText": "PartyRock (Amazon Bedrock 무료 실험 놀이터)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon SageMaker endpoints",
-        "koText": "Amazon SageMaker 엔드포인트 (모델 배포 엔드포인트)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "AI 개발팀이 팀 VPC 내에서 파운데이션 모델(FM)을 빠르게 배포하고 사용할 수 있는 AWS 서비스 또는 기능은 무엇입니까?",
@@ -1439,7 +1439,7 @@
       {
         "key": "B",
         "enText": "Residual neural network",
-        "koText": "잔차 신경망(Residual neural network, ResNet)"
+        "koText": "잔차 신경망(ResNet)"
       },
       {
         "key": "C",
@@ -1449,7 +1449,7 @@
       {
         "key": "D",
         "enText": "WaveNet",
-        "koText": "WaveNet (음성 생성 모델)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "회사가 테라바이트 단위 데이터를 가지고 있으며 비즈니스 분석에 활용하고자 합니다.회사는 직원이 입력한 텍스트로부터 SQL 쿼리를 생성할 수 있는 AI 기반 애플리케이션을 만들고 싶습니다.직원들은 기술 경험이 거의 없습니다.어떤 솔루션이 요구사항을 충족합니까?",
@@ -1875,27 +1875,27 @@
       {
         "key": "A",
         "enText": "Amazon Lex",
-        "koText": "Amazon Lex (챗봇·음성봇)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon Comprehend",
-        "koText": "Amazon Comprehend (자연어 처리·감정 분석)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Polly",
-        "koText": "Amazon Polly (텍스트→음성 변환)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon Bedrock",
-        "koText": "Amazon Bedrock (파운데이션 모델 API)"
+        "koText": ""
       },
       {
         "key": "E",
         "enText": "Amazon Rekognition",
-        "koText": "Amazon Rekognition (이미지·영상 분석)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "전자상거래 회사가 상품에 대한 고객 리뷰를 기반으로 고객 감정을 분석하는 솔루션을 구축하고자 합니다.이 요구사항을 충족하는 AWS 서비스는 무엇입니까? (2개 선택)",
@@ -2302,22 +2302,22 @@
       {
         "key": "A",
         "enText": "Amazon Rekognition",
-        "koText": "Amazon Rekognition (이미지·영상 분석)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon Bedrock playgrounds",
-        "koText": "Amazon Bedrock 플레이그라운드"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Guardrails for Amazon Bedrock",
-        "koText": "Amazon Bedrock Guardrails (안전장치)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Agents for Amazon Bedrock",
-        "koText": "Amazon Bedrock Agents (에이전트)"
+        "koText": ""
       },
       {
         "key": "E",
@@ -2354,7 +2354,7 @@
       {
         "key": "B",
         "enText": "XGBoost",
-        "koText": "XGBoost (그래디언트 부스팅 알고리즘)"
+        "koText": ""
       },
       {
         "key": "C",
@@ -2364,7 +2364,7 @@
       {
         "key": "D",
         "enText": "WaveNet",
-        "koText": "WaveNet (음성 생성 모델)"
+        "koText": ""
       },
       {
         "key": "E",
@@ -2955,22 +2955,22 @@
       {
         "key": "A",
         "enText": "Amazon Textract",
-        "koText": "Amazon Textract (문서 텍스트·데이터 추출)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon Personalize",
-        "koText": "Amazon Personalize (개인화 추천)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Lex",
-        "koText": "Amazon Lex (챗봇·음성봇)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon Transcribe",
-        "koText": "Amazon Transcribe (음성→텍스트 변환)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 회사가 스캔된 PDF 문서, 양식, 이미지에서 텍스트와 구조화된 데이터를 자동으로 추출해야 합니다. 어떤 AWS 서비스를 사용해야 합니까?",
@@ -3221,7 +3221,7 @@
       {
         "key": "B",
         "enText": "Amazon Q Developer",
-        "koText": "Amazon Q Developer (개발자용 AI 어시스턴트)"
+        "koText": ""
       },
       {
         "key": "C",
@@ -3422,7 +3422,7 @@
       {
         "key": "A",
         "enText": "Bilingual Evaluation Understudy (BLEU)",
-        "koText": "BLEU (기계 번역 품질 평가 지표)"
+        "koText": ""
       },
       {
         "key": "B",
@@ -3432,7 +3432,7 @@
       {
         "key": "C",
         "enText": "Recall-Oriented Understudy for Gisting Evaluation (ROUGE)",
-        "koText": "ROUGE (요약 품질 평가 지표)"
+        "koText": ""
       },
       {
         "key": "D",
@@ -3666,22 +3666,22 @@
       {
         "key": "A",
         "enText": "Amazon S3",
-        "koText": "Amazon S3 (객체 스토리지)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon Elastic Block Store (Amazon EBS)",
-        "koText": "Amazon EBS (블록 스토리지)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Elastic File System (Amazon EFS)",
-        "koText": "Amazon EFS (파일 스토리지)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "AWS Snowcone",
-        "koText": "AWS Snowcone (엣지 데이터 전송 장치)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 회사가 Amazon Bedrock에서 모델 평가에 사용할 데이터셋을 업로드·저장해야 합니다. 어떤 AWS 스토리지 서비스가 가장 적합합니까?",
@@ -4254,22 +4254,22 @@
       {
         "key": "A",
         "enText": "Amazon Q Developer",
-        "koText": "Amazon Q Developer (개발자용 AI 어시스턴트)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "AWS Config",
-        "koText": "AWS Config (리소스 구성 추적)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Personalize",
-        "koText": "Amazon Personalize (개인화 추천)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon Comprehend",
-        "koText": "Amazon Comprehend (자연어 처리)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 회사의 데이터 팀은 프로그래밍 경험이 거의 없으며, 자연어로 AWS 서비스 사용(예: 데이터 통합 작업 작성)을 도와주는 AI 어시스턴트가 필요합니다. 어떤 AWS 서비스를 사용해야 합니까?",
@@ -4338,22 +4338,22 @@
       {
         "key": "A",
         "enText": "Amazon SageMaker Clarify",
-        "koText": "Amazon SageMaker Clarify (편향 탐지·설명가능성)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon SageMaker Data Wrangler",
-        "koText": "Amazon SageMaker Data Wrangler (데이터 준비)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon SageMaker Model Cards",
-        "koText": "Amazon SageMaker Model Cards (모델 문서화)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "AWS AI Service Cards",
-        "koText": "AWS AI Service Cards (AI 서비스 책임 문서)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "데이터와 모델의 잠재적 편향을 탐지하고 모델 예측에 대한 설명가능성을 제공하는 Amazon SageMaker 기능은 무엇입니까?",
@@ -4386,7 +4386,7 @@
       {
         "key": "C",
         "enText": "BERTScore",
-        "koText": "BERTScore (임베딩 기반 의미 유사도 지표)"
+        "koText": ""
       },
       {
         "key": "D",
@@ -4424,7 +4424,7 @@
       {
         "key": "C",
         "enText": "Autoregressive Integrated Moving Average (ARIMA)",
-        "koText": "ARIMA (시계열 예측 모델)"
+        "koText": ""
       },
       {
         "key": "D",
@@ -4452,22 +4452,22 @@
       {
         "key": "A",
         "enText": "AWS Key Management Service (AWS KMS)",
-        "koText": "AWS KMS (암호화 키 관리 서비스)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon Inspector",
-        "koText": "Amazon Inspector (취약점 스캔)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Macie",
-        "koText": "Amazon Macie (S3 민감정보 탐지)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "AWS Secrets Manager",
-        "koText": "AWS Secrets Manager (비밀정보 관리)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 회사가 AWS 서비스에서 사용하는 데이터를 암호화하기 위해 자체 암호화 키를 생성·관리·제어하려고 합니다. 어떤 AWS 서비스를 사용해야 합니까?",
@@ -4680,22 +4680,22 @@
       {
         "key": "A",
         "enText": "Amazon Athena",
-        "koText": "Amazon Athena (S3 SQL 쿼리)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon Aurora PostgreSQL",
-        "koText": "Amazon Aurora PostgreSQL (관리형 관계형 DB, 벡터 검색 지원)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Redshift",
-        "koText": "Amazon Redshift (데이터 웨어하우스)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon EMR",
-        "koText": "Amazon EMR (빅데이터 처리)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 회사가 생성형 AI 애플리케이션을 위해 벡터 유사도 검색도 지원하는 관리형 관계형 데이터베이스를 원합니다. 어떤 AWS 서비스를 사용해야 합니까?",
@@ -5141,22 +5141,22 @@
       {
         "key": "A",
         "enText": "Amazon Personalize",
-        "koText": "Amazon Personalize (개인화 추천)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon SageMaker",
-        "koText": "Amazon SageMaker (ML 구축·학습·배포 플랫폼)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Athena",
-        "koText": "Amazon Athena (S3 SQL 쿼리)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon Comprehend",
-        "koText": "Amazon Comprehend (자연어 처리)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 회사가 ML 모델의 최적 하이퍼파라미터를 자동으로 찾고자 합니다. 자동 모델 튜닝(하이퍼파라미터 최적화)을 제공하는 AWS 서비스는 무엇입니까?",
@@ -5294,27 +5294,27 @@
       {
         "key": "A",
         "enText": "AWS CloudTrail",
-        "koText": "AWS CloudTrail (API 호출 로깅·감사)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon CloudWatch",
-        "koText": "Amazon CloudWatch (지표·로그 모니터링)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "AWS Audit Manager",
-        "koText": "AWS Audit Manager (감사 증거 수집)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon S3 Intelligent-Tiering",
-        "koText": "Amazon S3 Intelligent-Tiering (자동 스토리지 계층화)"
+        "koText": ""
       },
       {
         "key": "E",
         "enText": "Amazon S3 Standard",
-        "koText": "Amazon S3 Standard (표준 객체 스토리지)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 회사가 자사 AWS 계정에 대한 모든 API 호출(누가, 언제 요청했는지 포함)을 기록·감사해야 합니다. 어떤 AWS 서비스를 사용해야 합니까?",
@@ -5341,22 +5341,22 @@
       {
         "key": "A",
         "enText": "Amazon Personalize",
-        "koText": "Amazon Personalize (개인화 추천)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon Kendra",
-        "koText": "Amazon Kendra (엔터프라이즈 검색)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Rekognition",
-        "koText": "Amazon Rekognition (이미지·영상 분석)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon Transcribe",
-        "koText": "Amazon Transcribe (음성→텍스트)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 회사가 사용자의 행동과 선호도를 기반으로 개인화된 제품 추천을 제공하려고 합니다. 어떤 AWS AI 서비스를 사용해야 합니까?",
@@ -5417,22 +5417,22 @@
       {
         "key": "A",
         "enText": "Amazon CloudWatch",
-        "koText": "Amazon CloudWatch (지표·로그·알람 모니터링)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "AWS CloudTrail",
-        "koText": "AWS CloudTrail (API 호출 로깅)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "AWS Trusted Advisor",
-        "koText": "AWS Trusted Advisor (모범 사례 점검)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "AWS Config",
-        "koText": "AWS Config (리소스 구성 추적)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 회사가 지표·로그·알람을 사용해 AWS 리소스와 애플리케이션의 성능을 실시간으로 모니터링해야 합니다. 어떤 AWS 서비스를 사용해야 합니까?",
@@ -5493,22 +5493,22 @@
       {
         "key": "A",
         "enText": "Amazon Q Developer",
-        "koText": "Amazon Q Developer (개발자용 AI 어시스턴트)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon Bedrock",
-        "koText": "Amazon Bedrock (여러 공급자 FM 통합 API)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Kendra",
-        "koText": "Amazon Kendra (엔터프라이즈 검색)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon Comprehend",
-        "koText": "Amazon Comprehend (자연어 처리)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 회사가 인프라를 프로비저닝·관리하지 않고, 단일 관리형 API를 통해 여러 공급자의 파운데이션 모델에 접근하려고 합니다. 어떤 AWS 서비스를 사용해야 합니까?",
@@ -6233,27 +6233,27 @@
       {
         "key": "A",
         "enText": "AWS Audit Manager",
-        "koText": "AWS Audit Manager (감사 증거 수집·규정 준수 평가)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "AWS Config",
-        "koText": "AWS Config (리소스 구성 추적)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Inspector",
-        "koText": "Amazon Inspector (취약점 스캔)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon CloudWatch",
-        "koText": "Amazon CloudWatch (지표·로그 모니터링)"
+        "koText": ""
       },
       {
         "key": "E",
         "enText": "AWS CloudTrail",
-        "koText": "AWS CloudTrail (API 호출 로깅)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "글로벌 금융회사는 주식 시장 데이터를 분석하는 ML 애플리케이션을 개발했습니다. 개발 단계 전반에 대해 지속적으로 모니터링하고, 회사 정책과 업계 규정을 준수하는지 확인하려 합니다.컴플라이언스 평가에 도움 되는 AWS 서비스는 무엇입니까? (2개 선택)",
@@ -6364,22 +6364,22 @@
       {
         "key": "A",
         "enText": "Amazon Rekognition",
-        "koText": "Amazon Rekognition (이미지·영상 분석)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon SageMaker Clarify",
-        "koText": "Amazon SageMaker Clarify (편향 탐지·설명가능성)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Comprehend",
-        "koText": "Amazon Comprehend (자연어 처리)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon SageMaker Model Monitor",
-        "koText": "Amazon SageMaker Model Monitor (모델 품질 드리프트 모니터링)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "미디어 회사는 시청자 행동과 인구 통계를 분석하여 개인화된 콘텐츠를 추천하고자 합니다.회사는 커스텀 ML 모델을 배포하고, 시간이 지나면서 모델 품질이 변하는지도 모니터링하고자 합니다.어떤 AWS 서비스가 이 요구사항을 충족합니까?",
@@ -6406,22 +6406,22 @@
       {
         "key": "A",
         "enText": "Amazon SageMaker Model Cards",
-        "koText": "Amazon SageMaker Model Cards (모델 문서화·투명성)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon Rekognition",
-        "koText": "Amazon Rekognition (이미지·영상 분석)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Comprehend",
-        "koText": "Amazon Comprehend (자연어 처리)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon Lex",
-        "koText": "Amazon Lex (챗봇·음성봇)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "회사는 AWS를 사용해 AI/ML 모델을 배포하고 있습니다.모델의 의사 결정 과정에 대한 투명성과 설명을 제공하고자 합니다.어떤 서비스가 이 요구를 충족합니까?",
@@ -6444,22 +6444,22 @@
       {
         "key": "A",
         "enText": "Amazon Translate",
-        "koText": "Amazon Translate (기계 번역)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon Transcribe",
-        "koText": "Amazon Transcribe (음성→텍스트)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Kendra",
-        "koText": "Amazon Kendra (엔터프라이즈 검색)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon Polly",
-        "koText": "Amazon Polly (텍스트→음성)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "제조 회사가 여러 언어로 제품 설명을 작성하려고 합니다.이 작업을 자동화할 수 있는 AWS 서비스는 무엇입니까?",
@@ -6529,22 +6529,22 @@
       {
         "key": "A",
         "enText": "Amazon SageMaker Model Cards",
-        "koText": "Amazon SageMaker Model Cards (모델 문서화)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon SageMaker Debugger",
-        "koText": "Amazon SageMaker Debugger (학습 디버깅)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon SageMaker Model Monitor",
-        "koText": "Amazon SageMaker Model Monitor (모델 품질 모니터링)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon SageMaker JumpStart",
-        "koText": "Amazon SageMaker JumpStart (사전학습 모델 배포)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "ML 인스턴스 데이터에 대한 정보를 기록하여 거버넌스와 리포팅을 지원하는 AWS 기능은 무엇입니까?",
@@ -7191,22 +7191,22 @@
       {
         "key": "A",
         "enText": "GPU-powered Amazon EC2",
-        "koText": "GPU 기반 Amazon EC2 (직접 관리형 컴퓨팅)"
+        "koText": "GPU 기반 Amazon EC2"
       },
       {
         "key": "B",
         "enText": "Amazon Bedrock with Provisioned Throughput",
-        "koText": "프로비저닝 처리량 방식의 Amazon Bedrock (용량 예약형)"
+        "koText": "프로비저닝 처리량 방식의 Amazon Bedrock"
       },
       {
         "key": "C",
         "enText": "Amazon Bedrock with On-Demand Throughput",
-        "koText": "온디맨드 처리량 방식의 Amazon Bedrock (사용량 기반 과금)"
+        "koText": "온디맨드 처리량 방식의 Amazon Bedrock"
       },
       {
         "key": "D",
         "enText": "Amazon SageMaker JumpStart",
-        "koText": "Amazon SageMaker JumpStart (사전학습 모델 배포)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "파일럿 단계에서 사용량이 적고, 향후 수요 예측이 어려운 경우 비용을 최소화하는 솔루션은?",
@@ -7389,22 +7389,22 @@
       {
         "key": "A",
         "enText": "Amazon EC2",
-        "koText": "Amazon EC2 (가상 서버)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "On-demand throughput on Bedrock",
-        "koText": "Amazon Bedrock 온디맨드(Throughput)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "S3 + Lambda",
-        "koText": "Amazon S3 + AWS Lambda (스토리지 + 서버리스 함수)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Provisioned Throughput on Bedrock",
-        "koText": "Amazon Bedrock 사전 할당(Provisioned Throughput)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "Fine-tuning된 모델이 꾸준한 요청을 처리해야 할 때, 가장 비용 효율적인 배포 방식은?",
@@ -7766,22 +7766,22 @@
       {
         "key": "A",
         "enText": "Amazon Q Developer",
-        "koText": "Amazon Q Developer (개발자용 AI 어시스턴트)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon Polly",
-        "koText": "Amazon Polly (텍스트→음성)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Rekognition",
-        "koText": "Amazon Rekognition (이미지·영상 분석)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "AWS HealthScribe",
-        "koText": "AWS HealthScribe (의료 음성→임상 기록 생성)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "병원이 임상 기록을 받아쓰는 직원의 역량 향상을 위해 음성-텍스트 기능이 있는 생성형 AI 솔루션을 도입하려 합니다. 어떤 AWS 서비스가 적합합니까?",
@@ -8051,17 +8051,17 @@
       {
         "key": "A",
         "enText": "F1 score",
-        "koText": "F1 점수(F1 score)"
+        "koText": "F1 점수"
       },
       {
         "key": "B",
         "enText": "Bilingual Evaluation Understudy (BLEU) score",
-        "koText": "BLEU 점수 (기계 번역 품질 평가 지표)"
+        "koText": "BLEU 점수"
       },
       {
         "key": "C",
         "enText": "Accuracy",
-        "koText": "정확도(Accuracy)"
+        "koText": "정확도"
       },
       {
         "key": "D",
@@ -8681,22 +8681,22 @@
       {
         "key": "A",
         "enText": "Amazon SageMaker Model Monitor",
-        "koText": "Amazon SageMaker 모델 모니터(Model Monitor)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon SageMaker Clarify",
-        "koText": "Amazon SageMaker 클라리파이(Clarify)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon SageMaker Model Cards",
-        "koText": "Amazon SageMaker 모델 카드(Model Cards)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon SageMaker Feature Store",
-        "koText": "Amazon SageMaker 특징 저장소(Feature Store)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "모델이 회사의 프로덕션 환경에 오래 배포되어 있습니다. 최근 모델 응답에서 일부 불일치가 발견되었습니다. 회사는 모델 편향(Bias)과 드리프트(Drift)를 평가하고자 합니다. 이 요구사항을 충족하는 AWS 서비스 또는 기능은 무엇인가요?",
@@ -8812,7 +8812,7 @@
       {
         "key": "B",
         "enText": "Top K",
-        "koText": "Top K (다음 토큰 후보 수 제한 값)"
+        "koText": ""
       },
       {
         "key": "C",
@@ -9051,22 +9051,22 @@
       {
         "key": "A",
         "enText": "Amazon Comprehend",
-        "koText": "Amazon Comprehend (자연어 처리)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon Polly",
-        "koText": "Amazon Polly (텍스트→음성)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Transcribe",
-        "koText": "Amazon Transcribe (음성→텍스트, 자막 생성)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon Translate",
-        "koText": "Amazon Translate (기계 번역)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 애니메이션 회사가 콘텐츠에 자막을 제공하고자 합니다. 어떤 AWS 서비스가 적합할까요?",
@@ -9126,12 +9126,12 @@
       {
         "key": "A",
         "enText": "Analyze cost and usage reports in AWS Cost Explorer.",
-        "koText": "AWS 비용 보고서 분석(AWS Cost Explorer)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Download AWS security and compliance documents from AWS Artifact.",
-        "koText": "AWS 보안 및 규정 준수 문서 다운로드(AWS Artifact)"
+        "koText": ""
       },
       {
         "key": "C",
@@ -9225,22 +9225,22 @@
       {
         "key": "A",
         "enText": "Amazon SageMaker Ground Truth",
-        "koText": "Amazon SageMaker Ground Truth (데이터 라벨링)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon SageMaker Canvas",
-        "koText": "Amazon SageMaker Canvas (노코드 ML)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Bedrock playground",
-        "koText": "Amazon Bedrock 플레이그라운드"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon Bedrock Agents",
-        "koText": "Amazon Bedrock Agents (에이전트)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 회사가 맞춤형 컴퓨터 비전 모델을 개발했습니다. 실제 데이터에서 오류를 줄이기 위해 데이터 라벨링에 사용자 친화적인 인터페이스가 필요합니다.어떤 AWS 서비스 또는 도구가 적합할까요?",
@@ -9473,17 +9473,17 @@
       {
         "key": "B",
         "enText": "BERTScore",
-        "koText": "BERTScore (임베딩 기반 의미 유사도 지표)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Recall-Oriented Understudy for Gisting Evaluation (ROUGE)",
-        "koText": "ROUGE (요약 품질 평가 지표)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Bilingual Evaluation Understudy (BLEU) score",
-        "koText": "BLEU 점수 (기계 번역 품질 평가 지표)"
+        "koText": "BLEU 점수"
       }
     ],
     "koreanQuestion": "교육 회사가 10대 청소년을 대상으로 한 챗봇을 개발 중이며, 창의적인 철자 및 축약어를 포함한 언어 스타일을 사용하고자 합니다. 이러한 언어 스타일을 잘 반영했는지 평가하기 위해 사용할 수 있는 성능 평가지표는 무엇인가요?",
@@ -9609,22 +9609,22 @@
       {
         "key": "A",
         "enText": "AWS Audit Manager",
-        "koText": "AWS Audit Manager (감사 증거 수집)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon SageMaker Model Monitor",
-        "koText": "Amazon SageMaker Model Monitor (모델 품질 모니터링)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon SageMaker Model Registry",
-        "koText": "Amazon SageMaker Model Registry (모델 저장·버전 관리)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon SageMaker Canvas",
-        "koText": "Amazon SageMaker Canvas (노코드 ML)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 회사가 여러 개의 ML 모델을 만들었다. 이 모델들을 저장·관리·버전 관리할 수 있는 솔루션이 필요하다. 어떤 AWS 서비스 또는 기능이 이러한 요구사항을 충족하는가?",
@@ -10089,22 +10089,22 @@
       {
         "key": "A",
         "enText": "Amazon Personalize",
-        "koText": "Amazon Personalize (개인화 추천)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon Augmented AI (Amazon A2I)",
-        "koText": "Amazon Augmented AI(A2I) (사람 검토 워크플로우)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Inspector",
-        "koText": "Amazon Inspector (취약점 스캔)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "AWS Audit Manager",
-        "koText": "AWS Audit Manager (감사 증거 수집)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 금융회사가 ML 예측 결과에 대한 인간 검토 워크플로우를 구축하려 한다. 또한 신뢰도 임계값을 정의하고 시간이 지남에 따라 이를 조정하고자 한다. 이 요구사항을 충족하는 AWS 서비스는 무엇인가?",
@@ -10127,22 +10127,22 @@
       {
         "key": "A",
         "enText": "Amazon Rekognition",
-        "koText": "Amazon Rekognition (이미지·영상 분석)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon Textract",
-        "koText": "Amazon Textract (문서 텍스트 추출)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Lex",
-        "koText": "Amazon Lex (챗봇·음성봇)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon Q Business",
-        "koText": "Amazon Q Business (사내 데이터 기반 AI 어시스턴트)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 회사가 직원들이 내부 데이터를 조회할 수 있는 AI 어시스턴트를 만들고자 한다. 이 요구사항을 충족하는 AWS 서비스는 무엇인가?",
@@ -10165,22 +10165,22 @@
       {
         "key": "A",
         "enText": "Amazon SageMaker Canvas",
-        "koText": "Amazon SageMaker Canvas (노코드 ML 구축·배포)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon Rekognition",
-        "koText": "Amazon Rekognition (이미지·영상 분석)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "AWS DeepRacer",
-        "koText": "AWS DeepRacer (강화학습 실습용 레이싱카)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon Comprehend",
-        "koText": "Amazon Comprehend (자연어 처리)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 회사가 코드를 작성하지 않고 AWS에서 ML 모델을 구축하고 배포하고자 한다. 이 요구사항을 충족하는 AWS 서비스 또는 기능은 무엇인가?",
@@ -10236,22 +10236,22 @@
       {
         "key": "A",
         "enText": "AWS PrivateLink",
-        "koText": "AWS PrivateLink (VPC 내 프라이빗 연결)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon Q",
-        "koText": "Amazon Q (AI 어시스턴트)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon CloudFront",
-        "koText": "Amazon CloudFront (콘텐츠 전송 네트워크, CDN)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "AWS CloudTrail",
-        "koText": "AWS CloudTrail (API 호출 로깅)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 금융회사가 전 세계 여러 국가에 지사를 운영하고 있다.생성 AI 애플리케이션과 FM 간의 모든 API 호출이 공용 인터넷을 거치지 않아야 한다. 이 요구사항을 충족하는 AWS 서비스는 무엇인가?",
@@ -10269,12 +10269,12 @@
       {
         "key": "A",
         "enText": "Amazon Bedrock Guardrails",
-        "koText": "Amazon Bedrock Guardrails (유해 콘텐츠 필터링 안전장치)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon Bedrock Agents",
-        "koText": "Amazon Bedrock Agents (에이전트)"
+        "koText": ""
       },
       {
         "key": "C",
@@ -10302,22 +10302,22 @@
       {
         "key": "A",
         "enText": "Amazon Q Developer",
-        "koText": "Amazon Q Developer (개발자용 AI 어시스턴트)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon SageMaker JumpStart",
-        "koText": "Amazon SageMaker JumpStart (사전학습 모델 배포)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Bedrock PartyRock",
-        "koText": "Amazon Bedrock PartyRock (무료 생성형 AI 실험 놀이터)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon Q Business",
-        "koText": "Amazon Q Business (사내 데이터 기반 AI 어시스턴트)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 회사가 실험 환경에서 생성 AI 애플리케이션을 학습하고 싶다. 가장 비용 효율적인 솔루션은 무엇인가?",
@@ -10442,22 +10442,22 @@
       {
         "key": "A",
         "enText": "SageMaker Canvas",
-        "koText": "SageMaker Canvas (노코드 ML)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "SageMaker Clarify",
-        "koText": "SageMaker Clarify (편향 탐지·설명가능성)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "SageMaker Model Monitor",
-        "koText": "SageMaker Model Monitor (모델 품질 모니터링)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "SageMaker Data Wrangler",
-        "koText": "SageMaker Data Wrangler (데이터 준비)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "머신러닝 지식이 거의 없는 AI 실무자가 코드를 작성하지 않고 직원 이직률을 예측하고 싶다. 어떤 SageMaker 기능이 이를 충족하는가?",
@@ -10680,22 +10680,22 @@
       {
         "key": "A",
         "enText": "Amazon SageMaker Data Wrangler",
-        "koText": "Amazon SageMaker Data Wrangler (데이터 준비)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon SageMaker Ground Truth Plus",
-        "koText": "Amazon SageMaker Ground Truth Plus (완전관리형 데이터 라벨링)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Transcribe",
-        "koText": "Amazon Transcribe (음성→텍스트)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon Macie",
-        "koText": "Amazon Macie (S3 민감정보 탐지)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 회사가 인간 피드백을 사용해 FM을 미세 조정하기 위한 학습 데이터셋 라벨링을 원한다.라벨링 애플리케이션 개발이나 라벨링 인력 관리는 원하지 않는다. 어떤 AWS 서비스가 요구사항을 충족하는가?",
@@ -10713,22 +10713,22 @@
       {
         "key": "A",
         "enText": "Amazon Comprehend",
-        "koText": "Amazon Comprehend (자연어 처리)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon Personalize",
-        "koText": "Amazon Personalize (개인화 추천)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Polly",
-        "koText": "Amazon Polly (텍스트→음성)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon OpenSearch Service",
-        "koText": "Amazon OpenSearch Service (검색·벡터 데이터베이스)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "온라인 미디어 스트리밍 회사가 자연어 기반 이미지 검색 및 필터링 기능을 제공하고자 한다.유사도 검색과 최근접 이웃 쿼리를 지원하는 벡터 데이터베이스가 필요하다. 어떤 AWS 서비스가 이를 지원하는가?",
@@ -10962,7 +10962,7 @@
       {
         "key": "C",
         "enText": "Recall-Oriented Understudy for Gisting Evaluation (ROUGE)",
-        "koText": "ROUGE (요약 품질 평가 지표)"
+        "koText": ""
       },
       {
         "key": "D",
@@ -11058,22 +11058,22 @@
       {
         "key": "A",
         "enText": "Amazon QuickSight",
-        "koText": "Amazon QuickSight (BI 시각화 대시보드)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon Comprehend",
-        "koText": "Amazon Comprehend (자연어 처리)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "AWS Trusted Advisor",
-        "koText": "AWS Trusted Advisor (모범 사례 점검)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon SageMaker Clarify",
-        "koText": "Amazon SageMaker Clarify (편향 탐지·설명가능성)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "AI 담당자가 ML 모델을 평가하고, 고객과 이해관계자에게 모델 예측에 대한 설명을 제공하고자 한다.",
@@ -11401,22 +11401,22 @@
       {
         "key": "A",
         "enText": "Amazon Comprehend",
-        "koText": "Amazon Comprehend (자연어 처리)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon Textract",
-        "koText": "Amazon Textract (문서 텍스트 추출)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Kendra",
-        "koText": "Amazon Kendra (엔터프라이즈 검색)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon Personalize",
-        "koText": "Amazon Personalize (개인화 추천)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "대량의 교육 자료를 보유한 온라인 교육 회사가 엔터프라이즈 검색 기능을 사용하려고 합니다.이 요구 사항을 충족하는 AWS 서비스는 무엇입니까?",
@@ -11443,22 +11443,22 @@
       {
         "key": "A",
         "enText": "Amazon S3",
-        "koText": "Amazon S3 (객체 스토리지)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon EC2",
-        "koText": "Amazon EC2 (가상 서버)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon RDS",
-        "koText": "Amazon RDS (관계형 DB)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "AWS Lambda",
-        "koText": "AWS Lambda (서버리스 함수)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "언제든지 원하는 양의 데이터를 저장하고 검색하는 데 주로 사용되는 AWS 서비스는 무엇입니까?",
@@ -11476,22 +11476,22 @@
       {
         "key": "A",
         "enText": "AWS Lambda",
-        "koText": "AWS Lambda (서버리스 컴퓨팅)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon EC2",
-        "koText": "Amazon EC2 (가상 서버)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon ECS",
-        "koText": "Amazon ECS (컨테이너 오케스트레이션)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "AWS Batch",
-        "koText": "AWS Batch (배치 컴퓨팅)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "서버를 프로비저닝하거나 관리하지 않고 코드를 실행할 수 있게 해주는 AWS 서비스는 무엇입니까?",
@@ -11509,22 +11509,22 @@
       {
         "key": "A",
         "enText": "Amazon DynamoDB",
-        "koText": "Amazon DynamoDB (관리형 NoSQL)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon RDS",
-        "koText": "Amazon RDS (관계형 DB)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Redshift",
-        "koText": "Amazon Redshift (데이터 웨어하우스)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon Aurora",
-        "koText": "Amazon Aurora (관계형 DB)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "AWS에서 완전 관리형 NoSQL 데이터베이스 서비스는 무엇입니까?",
@@ -11542,22 +11542,22 @@
       {
         "key": "A",
         "enText": "Amazon CloudWatch",
-        "koText": "Amazon CloudWatch (모니터링)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "AWS CloudTrail",
-        "koText": "AWS CloudTrail (API 감사 로그)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "AWS Config",
-        "koText": "AWS Config (구성 추적)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "AWS X-Ray",
-        "koText": "AWS X-Ray (분산 추적)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "실시간으로 애플리케이션과 인프라를 모니터링하는 데 사용할 수 있는 AWS 서비스는 무엇입니까?",
@@ -11575,22 +11575,22 @@
       {
         "key": "A",
         "enText": "Amazon VPC",
-        "koText": "Amazon VPC (가상 네트워크)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "AWS Direct Connect",
-        "koText": "AWS Direct Connect (전용 회선)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Route 53",
-        "koText": "Amazon Route 53 (DNS 서비스)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "AWS Transit Gateway",
-        "koText": "AWS Transit Gateway (네트워크 허브)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "클라우드 리소스를 가상 네트워크 내에서 격리할 수 있게 해주는 AWS 서비스는 무엇입니까?",
@@ -11608,22 +11608,22 @@
       {
         "key": "A",
         "enText": "Amazon EC2",
-        "koText": "Amazon EC2 (가상 서버)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "AWS Lambda",
-        "koText": "AWS Lambda (서버리스)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Lightsail",
-        "koText": "Amazon Lightsail (간편 VPS)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon ECS",
-        "koText": "Amazon ECS (컨테이너)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "클라우드에서 가상 서버를 실행하고 관리할 수 있게 해주는 AWS 서비스는 무엇입니까?",
@@ -11641,22 +11641,22 @@
       {
         "key": "A",
         "enText": "Amazon CloudFront",
-        "koText": "Amazon CloudFront (콘텐츠 전송 네트워크, CDN)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon S3",
-        "koText": "Amazon S3 (스토리지)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "AWS Global Accelerator",
-        "koText": "AWS Global Accelerator (네트워크 가속)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon Route 53",
-        "koText": "Amazon Route 53 (DNS 서비스)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "전 세계적으로 콘텐츠를 낮은 지연 시간으로 배포하는 데 도움이 되는 AWS 서비스는 무엇입니까?",
@@ -11674,22 +11674,22 @@
       {
         "key": "A",
         "enText": "Amazon Route 53",
-        "koText": "Amazon Route 53 (DNS 서비스)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon CloudFront",
-        "koText": "Amazon CloudFront (콘텐츠 전송 네트워크, CDN)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon VPC",
-        "koText": "Amazon VPC (가상 네트워크)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "AWS Direct Connect",
-        "koText": "AWS Direct Connect (전용 회선)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "클라우드에서 도메인 이름 시스템(DNS)을 제공하는 AWS 서비스는 무엇입니까?",
@@ -11707,22 +11707,22 @@
       {
         "key": "A",
         "enText": "AWS Elastic Beanstalk",
-        "koText": "AWS Elastic Beanstalk (PaaS 배포)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "AWS CloudFormation",
-        "koText": "AWS CloudFormation (코드형 인프라, IaC)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon EC2",
-        "koText": "Amazon EC2 (가상 서버)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "AWS Lambda",
-        "koText": "AWS Lambda (서버리스)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "웹 애플리케이션을 손쉽게 배포하고 확장할 수 있는 AWS 서비스는 무엇입니까?",
@@ -11740,22 +11740,22 @@
       {
         "key": "A",
         "enText": "AWS CloudFormation",
-        "koText": "AWS CloudFormation (코드형 인프라, IaC)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "AWS Elastic Beanstalk",
-        "koText": "AWS Elastic Beanstalk (PaaS 배포 서비스)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "AWS OpsWorks",
-        "koText": "AWS OpsWorks (구성 관리)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "AWS Systems Manager",
-        "koText": "AWS Systems Manager (운영 관리)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "코드를 사용하여 인프라 프로비저닝을 자동화하는 데 사용되는 AWS 서비스는 무엇입니까?",
@@ -11773,7 +11773,7 @@
       {
         "key": "A",
         "enText": "AWS Auto Scaling",
-        "koText": "AWS Auto Scaling (자동 확장)"
+        "koText": ""
       },
       {
         "key": "B",
@@ -11783,12 +11783,12 @@
       {
         "key": "C",
         "enText": "Amazon CloudWatch",
-        "koText": "Amazon CloudWatch (모니터링)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "AWS Lambda",
-        "koText": "AWS Lambda (서버리스)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "안정적이고 예측 가능한 성능을 유지하기 위해 용량을 자동으로 조정할 수 있게 해주는 AWS 서비스는 무엇입니까?",
@@ -11806,22 +11806,22 @@
       {
         "key": "A",
         "enText": "Amazon ECS",
-        "koText": "Amazon ECS (컨테이너 오케스트레이션)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon EKS",
-        "koText": "Amazon EKS (관리형 Kubernetes)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "AWS Fargate",
-        "koText": "AWS Fargate (서버리스 컨테이너)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon EC2",
-        "koText": "Amazon EC2 (가상 서버)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "컨테이너 실행을 위한 격리된 환경을 만들 수 있는 AWS 서비스는 무엇입니까?",
@@ -11839,22 +11839,22 @@
       {
         "key": "A",
         "enText": "Amazon EKS",
-        "koText": "Amazon EKS (관리형 Kubernetes)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon ECS",
-        "koText": "Amazon ECS (AWS 자체 오케스트레이션)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "AWS Fargate",
-        "koText": "AWS Fargate (서버리스 컨테이너)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon EC2",
-        "koText": "Amazon EC2 (가상 서버)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "AWS에서 관리형 쿠버네티스 서비스를 제공하는 것은 무엇입니까?",
@@ -11872,22 +11872,22 @@
       {
         "key": "A",
         "enText": "AWS Fargate",
-        "koText": "AWS Fargate (서버리스 컨테이너)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Amazon EKS",
-        "koText": "Amazon EKS (관리형 Kubernetes)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon ECS",
-        "koText": "Amazon ECS (컨테이너 오케스트레이션)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "AWS Lambda",
-        "koText": "AWS Lambda (서버리스 함수)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "서버리스 컨테이너를 사용하여 애플리케이션을 빌드하고 실행할 수 있게 해주는 AWS 서비스는 무엇입니까?",
@@ -11905,7 +11905,7 @@
       {
         "key": "A",
         "enText": "AWS IAM",
-        "koText": "AWS IAM (자격 증명·권한 관리)"
+        "koText": ""
       },
       {
         "key": "B",
@@ -11915,12 +11915,12 @@
       {
         "key": "C",
         "enText": "AWS Organizations",
-        "koText": "AWS Organizations (다중 계정 관리)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "AWS KMS",
-        "koText": "AWS KMS (암호화 키 관리)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "사용자 액세스 및 권한 관리를 위해 사용되는 AWS 서비스는 무엇입니까?",
@@ -11943,17 +11943,17 @@
       {
         "key": "B",
         "enText": "Amazon SageMaker Clarify",
-        "koText": "Amazon SageMaker Clarify (편향 탐지·설명가능성)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Amazon Bedrock Guardrails",
-        "koText": "Amazon Bedrock Guardrails(가드레일)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Amazon SageMaker Jumpstart",
-        "koText": "Amazon SageMaker JumpStart (사전학습 모델 배포)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 회사가 LLM을 사용해 온라인 튜터링 애플리케이션을 개발하고 있습니다. 회사는 LLM에 구성 가능한 안전장치를 적용해 표준 안전 규칙을 따르도록 해야 합니다.이 요구사항을 가장 적은 노력으로 충족하는 방법은 무엇입니까?",
@@ -11971,22 +11971,22 @@
       {
         "key": "A",
         "enText": "Nova Lite",
-        "koText": "Nova Lite (저비용 멀티모달 모델)"
+        "koText": ""
       },
       {
         "key": "B",
         "enText": "Nova Pro",
-        "koText": "Nova Pro (고성능 멀티모달 모델)"
+        "koText": ""
       },
       {
         "key": "C",
         "enText": "Nova Canvas",
-        "koText": "Nova Canvas (이미지 생성 모델)"
+        "koText": ""
       },
       {
         "key": "D",
         "enText": "Nova Reel",
-        "koText": "Nova Reel (동영상 생성 모델)"
+        "koText": ""
       }
     ],
     "koreanQuestion": "한 회사가 Amazon Bedrock의 Amazon Nova 모델을 검토 중입니다. 다국어를 지원하는 멀티모달 모델이 필요합니다.이 요구를 가장 비용 효율적으로 충족하는 모델은 무엇입니까?",
@@ -12700,22 +12700,22 @@
       {
         "key": "A",
         "enText": "Comprehend",
-        "koText": "Amazon Comprehend (자연어 처리)"
+        "koText": "Amazon Comprehend"
       },
       {
         "key": "B",
         "enText": "Personalize",
-        "koText": "Amazon Personalize (개인화 추천)"
+        "koText": "Amazon Personalize"
       },
       {
         "key": "C",
         "enText": "Rekognition",
-        "koText": "Amazon Rekognition (이미지·영상 분석)"
+        "koText": "Amazon Rekognition"
       },
       {
         "key": "D",
         "enText": "Bedrock",
-        "koText": "Amazon Bedrock (파운데이션 모델 API)"
+        "koText": "Amazon Bedrock"
       }
     ],
     "koreanQuestion": "",
