@@ -26,6 +26,7 @@ export default function DashboardScreen() {
   const resumeBookmark = useStore(s => s.resumeBookmark);
   const clearBookmark = useStore(s => s.clearBookmark);
   const startExam = useStore(s => s.startExam);
+  const examResult = useStore(s => s.examResult);
 
   const overall = getOverallProgress();
 
@@ -118,6 +119,25 @@ export default function DashboardScreen() {
           </div>
           <span className="text-white/80 text-lg">›</span>
         </button>
+
+        {/* 지난 모의고사 결과 다시 보기 */}
+        {examResult && (
+          <button
+            onClick={() => navigate('/exam/result')}
+            className="w-full bg-white rounded-2xl p-3 shadow-sm border border-indigo-100 flex items-center gap-3 active:scale-[0.99] transition-transform text-left"
+          >
+            <span className="text-xl">📊</span>
+            <div className="flex-1 min-w-0">
+              <p className="font-bold text-slate-700 text-sm">지난 모의고사 결과 보기</p>
+              <p className="text-xs text-slate-400 mt-0.5">
+                {new Date(examResult.submittedAt).toLocaleDateString('ko-KR')} 응시 · {examResult.correct}/{examResult.total} 정답
+              </p>
+            </div>
+            <span className={`shrink-0 text-lg font-extrabold ${examResult.score >= (examResult.passScore || 70) ? 'text-emerald-500' : 'text-red-500'}`}>
+              {examResult.score}%
+            </span>
+          </button>
+        )}
 
         {/* 책갈피 이어풀기 */}
         {bookmark && (

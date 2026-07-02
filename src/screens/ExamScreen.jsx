@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useStore, { getAnswerType } from '../store/useStore';
 import AnswerOption from '../components/AnswerOption';
@@ -46,7 +46,10 @@ export default function ExamScreen() {
 
   const question = getCurrentExamQuestion();
 
+  // 제출/채점 중에는 결과 페이지로 이동하므로 홈 리다이렉트를 막는다
+  const submittingRef = useRef(false);
   useEffect(() => {
+    if (submittingRef.current) return;
     if (!exam) navigate('/', { replace: true });
   }, [exam, navigate]);
 
@@ -78,6 +81,7 @@ export default function ExamScreen() {
   };
 
   const handleSubmit = () => {
+    submittingRef.current = true;
     finishExam();
     navigate('/exam/result', { replace: true });
   };
