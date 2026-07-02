@@ -2,24 +2,12 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import allQuestions from '../data/questions.json';
 
-// Firestore 동기화 디바운서 (1초 debounce)
-let syncTimer = null;
-function scheduleSyncToCloud(state) {
-  if (syncTimer) clearTimeout(syncTimer);
-  syncTimer = setTimeout(async () => {
-    try {
-      const { default: useAuthStore } = await import('./useAuthStore');
-      const { user, saveToCloud } = useAuthStore.getState();
-      if (!user) return;
-      const { progress, scrappedQuestions, wrongQuestions } = state;
-      await saveToCloud(user.uid, { progress, scrappedQuestions, wrongQuestions });
-    } catch (e) {
-      // Firebase 미설정 시 무시
-    }
-  }, 1000);
-}
+const TOTAL = allQuestions.length; // 329 (유효 문제 319)
 
-const TOTAL = allQuestions.length; // 329
+// 실제 시험 설정 (AWS AIF-C01: 65문항 / 90분)
+const EXAM_QUESTION_COUNT = 65;
+const EXAM_TIME_LIMIT = 90 * 60; // 초
+const EXAM_PASS_SCORE = 70;      // %
 
 function shuffle(arr) {
   const a = [...arr];
@@ -30,6 +18,55 @@ function shuffle(arr) {
   return a;
 }
 
+// 답안 유형 판별
+function getAnswerType(question) {
+  return question.answerType
+    || (question.correctAnswer === 'HOTSPOT' || question.correctAnswer === 'UNKNOWN' || question.isHotspot
+      ? 'matching'
+      : 'single');
+}
+
+// 정답 여부 채점 (단일/복수형만 채점 가능)
+function checkCorrect(question, userAnswer) {
+  if (!question || userAnswer == null) return false;
+  const answerType = getAnswerType(question);
+  if (answerType === 'matching' || answerType === 'ordering') return false;
+
+  if (answerType === 'multi') {
+    const correctKeys = question.correctAnswers
+      || String(question.correctAnswer).split(/[,\s]+/).filter(Boolean);
+    const userKeys = Array.isArray(userAnswer)
+      ? userAnswer
+      : String(userAnswer).split(/[,\s]+/).filter(Boolean);
+    return correctKeys.length === userKeys.length
+      && [...correctKeys].sort().join(',') === [...userKeys].sort().join(',');
+  }
+  return userAnswer === question.correctAnswer;
+}
+
+// 유효 문제(문제 텍스트 있음) id
+function getValidIds() {
+  return allQuestions
+    .filter(q => {
+      const ko = (q.koreanQuestion || '').trim();
+      const en = (q.englishQuestion || '').trim();
+      return ko.length > 5 || en.length > 5;
+    })
+    .map(q => q.id);
+}
+
+// 채점 가능한(단일/복수형) 유효 문제 id — 모의고사용
+function getScorableIds() {
+  const validSet = new Set(getValidIds());
+  return allQuestions
+    .filter(q => {
+      if (!validSet.has(q.id)) return false;
+      const t = getAnswerType(q);
+      return (t === 'single' || t === 'multi') && Array.isArray(q.choices) && q.choices.length > 0;
+    })
+    .map(q => q.id);
+}
+
 const useStore = create(
   persist(
     (set, get) => ({
@@ -37,6 +74,7 @@ const useStore = create(
       progress: {},           // { [id]: { userAnswer, isCorrect, answeredAt } }
       scrappedQuestions: [],  // [id, ...]
       wrongQuestions: [],     // [id, ...]
+      bookmark: null,         // { mode, questionId, index, savedAt } — 책갈피
       settings: {
         randomOrder: false,
         showBilingual: true,  // 영문+한글 동시 표시
@@ -53,17 +91,23 @@ const useStore = create(
          }
       */
 
+      // ── 모의고사 세션
+      examSession: null,
+      /* {
+           questionIds: [id, ...],
+           answers: { [id]: userAnswer },
+           currentIndex: number,
+           startTime: number,
+           timeLimit: number,  // 초
+         }
+      */
+      examResult: null,
+      /* { questionIds, answers, correct, total, wrong: [id], score, durationSec, submittedAt } */
+
       // ── 세션 시작
       startSession: (mode = 'all') => {
         const { wrongQuestions, scrappedQuestions, settings } = get();
-        // 빈 문제(문제 텍스트 없음) 제외 — 한글 또는 영문 문제 텍스트가 있으면 포함
-        const validIds = allQuestions
-          .filter(q => {
-            const ko = (q.koreanQuestion || '').trim();
-            const en = (q.englishQuestion || '').trim();
-            return ko.length > 5 || en.length > 5;
-          })
-          .map(q => q.id);
+        const validIds = getValidIds();
 
         let ids;
         if (mode === 'wrong') {
@@ -145,24 +189,9 @@ const useStore = create(
         const question = allQuestions.find(q => q.id === questionId);
         if (!question) return;
 
-        const answerType = question.answerType
-          || (question.correctAnswer === 'HOTSPOT' || question.correctAnswer === 'UNKNOWN' || question.isHotspot ? 'matching' : 'single');
+        const answerType = getAnswerType(question);
         const isReveal = answerType === 'matching' || answerType === 'ordering';
-
-        let isCorrect;
-        if (isReveal) {
-          isCorrect = false;
-        } else if (answerType === 'multi') {
-          const correctKeys = question.correctAnswers
-            || String(question.correctAnswer).split(/[,\s]+/).filter(Boolean);
-          const userKeys = Array.isArray(userAnswer)
-            ? userAnswer
-            : String(userAnswer).split(/[,\s]+/).filter(Boolean);
-          isCorrect = correctKeys.length === userKeys.length
-            && [...correctKeys].sort().join(',') === [...userKeys].sort().join(',');
-        } else {
-          isCorrect = userAnswer === question.correctAnswer;
-        }
+        const isCorrect = isReveal ? false : checkCorrect(question, userAnswer);
         const isHotspot = isReveal;
 
         const { progress, wrongQuestions, scrappedQuestions } = get();
@@ -186,20 +215,148 @@ const useStore = create(
         }
 
         set({ progress: newProgress, wrongQuestions: newWrong, scrappedQuestions: newScrapped });
-        scheduleSyncToCloud({ progress: newProgress, scrappedQuestions: newScrapped, wrongQuestions: newWrong });
         return isCorrect;
       },
 
       // ── 스크랩 토글
       toggleScrapped: (questionId) => {
-        const { scrappedQuestions, progress, wrongQuestions } = get();
+        const { scrappedQuestions } = get();
         const isScrap = scrappedQuestions.includes(questionId);
         const newScrapped = isScrap
           ? scrappedQuestions.filter(id => id !== questionId)
           : [...scrappedQuestions, questionId];
         set({ scrappedQuestions: newScrapped });
-        scheduleSyncToCloud({ progress, scrappedQuestions: newScrapped, wrongQuestions });
       },
+
+      // ── 책갈피: 현재 문제 위치 저장
+      setBookmark: () => {
+        const session = get().currentSession;
+        if (!session) return;
+        const questionId = session.sessionQuestionIds[session.currentIndex];
+        set({
+          bookmark: {
+            mode: session.mode,
+            questionId,
+            index: session.currentIndex,
+            savedAt: Date.now(),
+          },
+        });
+      },
+
+      // ── 책갈피 해제
+      clearBookmark: () => set({ bookmark: null }),
+
+      // ── 책갈피 이어풀기: 저장된 모드로 세션 시작 후 해당 문제로 이동
+      resumeBookmark: () => {
+        const { bookmark } = get();
+        if (!bookmark) return;
+        get().startSession(bookmark.mode || 'all');
+        const session = get().currentSession;
+        if (!session) return;
+        let idx = session.sessionQuestionIds.indexOf(bookmark.questionId);
+        if (idx < 0) idx = Math.min(bookmark.index || 0, session.sessionQuestionIds.length - 1);
+        get().jumpToIndex(idx);
+      },
+
+      // ── 모의고사 시작
+      startExam: () => {
+        const pool = getScorableIds();
+        const count = Math.min(EXAM_QUESTION_COUNT, pool.length);
+        const questionIds = shuffle(pool).slice(0, count);
+        set({
+          examResult: null,
+          examSession: {
+            questionIds,
+            answers: {},
+            currentIndex: 0,
+            startTime: Date.now(),
+            timeLimit: EXAM_TIME_LIMIT,
+          },
+        });
+      },
+
+      // ── 모의고사 답안 선택 (채점 없이 저장만)
+      setExamAnswer: (questionId, userAnswer) => {
+        const exam = get().examSession;
+        if (!exam) return;
+        set({ examSession: { ...exam, answers: { ...exam.answers, [questionId]: userAnswer } } });
+      },
+
+      // ── 모의고사 문항 이동
+      examJump: (index) => {
+        const exam = get().examSession;
+        if (!exam) return;
+        const clamped = Math.max(0, Math.min(index, exam.questionIds.length - 1));
+        set({ examSession: { ...exam, currentIndex: clamped } });
+      },
+      examNext: () => {
+        const exam = get().examSession;
+        if (!exam) return;
+        const idx = Math.min(exam.currentIndex + 1, exam.questionIds.length - 1);
+        set({ examSession: { ...exam, currentIndex: idx } });
+      },
+      examPrev: () => {
+        const exam = get().examSession;
+        if (!exam) return;
+        const idx = Math.max(exam.currentIndex - 1, 0);
+        set({ examSession: { ...exam, currentIndex: idx } });
+      },
+
+      // ── 모의고사 제출 & 채점
+      finishExam: () => {
+        const exam = get().examSession;
+        if (!exam) return;
+        const { progress, wrongQuestions, scrappedQuestions } = get();
+
+        const newProgress = { ...progress };
+        let newWrong = [...wrongQuestions];
+        let newScrapped = [...scrappedQuestions];
+
+        let correct = 0;
+        const wrong = [];
+        for (const qId of exam.questionIds) {
+          const q = allQuestions.find(x => x.id === qId);
+          const ua = exam.answers[qId];
+          const ok = checkCorrect(q, ua);
+          if (ok) {
+            correct++;
+            newWrong = newWrong.filter(id => id !== qId);
+          } else {
+            wrong.push(qId);
+            if (!newWrong.includes(qId)) newWrong.push(qId);
+            if (!newScrapped.includes(qId)) newScrapped.push(qId);
+          }
+          // 응답한 문제만 진도에 기록
+          if (ua != null) {
+            newProgress[qId] = { userAnswer: ua, isCorrect: ok, answeredAt: Date.now() };
+          }
+        }
+
+        const total = exam.questionIds.length;
+        const result = {
+          questionIds: exam.questionIds,
+          answers: exam.answers,
+          correct,
+          total,
+          wrong,
+          score: total > 0 ? Math.round((correct / total) * 100) : 0,
+          passScore: EXAM_PASS_SCORE,
+          durationSec: Math.floor((Date.now() - exam.startTime) / 1000),
+          submittedAt: Date.now(),
+        };
+
+        set({
+          examResult: result,
+          examSession: null,
+          progress: newProgress,
+          wrongQuestions: newWrong,
+          scrappedQuestions: newScrapped,
+        });
+        return result;
+      },
+
+      // ── 모의고사 종료(중단)
+      endExam: () => set({ examSession: null }),
 
       // ── 설정 변경
       updateSettings: (patch) => {
@@ -211,7 +368,10 @@ const useStore = create(
         progress: {},
         scrappedQuestions: [],
         wrongQuestions: [],
+        bookmark: null,
         currentSession: null,
+        examSession: null,
+        examResult: null,
       }),
 
       // ── 선택된 카테고리 진도
@@ -241,6 +401,14 @@ const useStore = create(
         const qId = session.sessionQuestionIds[session.currentIndex];
         return allQuestions.find(q => q.id === qId) || null;
       },
+
+      // ── 모의고사 현재 문제
+      getCurrentExamQuestion: () => {
+        const exam = get().examSession;
+        if (!exam) return null;
+        const qId = exam.questionIds[exam.currentIndex];
+        return allQuestions.find(q => q.id === qId) || null;
+      },
     }),
     {
       name: 'aif_app_state',
@@ -248,12 +416,15 @@ const useStore = create(
         progress: state.progress,
         scrappedQuestions: state.scrappedQuestions,
         wrongQuestions: state.wrongQuestions,
+        bookmark: state.bookmark,
         settings: state.settings,
         currentSession: state.currentSession,
+        examSession: state.examSession,
+        examResult: state.examResult,
       }),
     }
   )
 );
 
-export { allQuestions, TOTAL };
+export { allQuestions, TOTAL, EXAM_QUESTION_COUNT, EXAM_TIME_LIMIT, EXAM_PASS_SCORE, checkCorrect, getAnswerType };
 export default useStore;

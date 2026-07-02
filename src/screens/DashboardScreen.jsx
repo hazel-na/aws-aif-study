@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProgressRing from '../components/ProgressRing';
-import AuthButton from '../components/AuthButton';
 import useStore, { TOTAL } from '../store/useStore';
 
 const CATEGORY_META = {
@@ -23,6 +22,10 @@ export default function DashboardScreen() {
   const getCategoryProgress = useStore(s => s.getCategoryProgress);
   const wrongQuestions = useStore(s => s.wrongQuestions);
   const scrappedQuestions = useStore(s => s.scrappedQuestions);
+  const bookmark = useStore(s => s.bookmark);
+  const resumeBookmark = useStore(s => s.resumeBookmark);
+  const clearBookmark = useStore(s => s.clearBookmark);
+  const startExam = useStore(s => s.startExam);
 
   const overall = getOverallProgress();
 
@@ -30,6 +33,18 @@ export default function DashboardScreen() {
     startSession(activeMode);
     navigate('/quiz');
   };
+
+  const handleResumeBookmark = () => {
+    resumeBookmark();
+    navigate('/quiz');
+  };
+
+  const handleStartExam = () => {
+    startExam();
+    navigate('/exam');
+  };
+
+  const MODE_LABEL = { all: '전체 문제', wrong: '오답 복습', scrapped: '스크랩 복습' };
 
   const modeCount = {
     all: TOTAL,
@@ -59,7 +74,6 @@ export default function DashboardScreen() {
             >
               ⭐ 복습
             </button>
-            <AuthButton />
           </div>
         </div>
       </div>
@@ -91,6 +105,45 @@ export default function DashboardScreen() {
             </p>
           </button>
         </div>
+
+        {/* 모의고사 배너 */}
+        <button
+          onClick={handleStartExam}
+          className="w-full bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl p-4 flex items-center gap-4 shadow-md active:scale-[0.98] transition-transform text-left"
+        >
+          <span className="text-3xl">📝</span>
+          <div className="flex-1 min-w-0">
+            <p className="text-white font-extrabold text-base">모의고사</p>
+            <p className="text-indigo-100 text-xs mt-0.5">실전과 동일 · 65문항 90분 · 랜덤 출제</p>
+          </div>
+          <span className="text-white/80 text-lg">›</span>
+        </button>
+
+        {/* 책갈피 이어풀기 */}
+        {bookmark && (
+          <div className="bg-white rounded-2xl p-4 shadow-sm border border-emerald-100 flex items-center gap-3">
+            <span className="text-2xl">📑</span>
+            <div className="flex-1 min-w-0">
+              <p className="font-bold text-slate-700 text-sm">책갈피에서 이어풀기</p>
+              <p className="text-xs text-slate-400 mt-0.5">
+                {MODE_LABEL[bookmark.mode] || '전체 문제'} · Q.{(bookmark.index ?? 0) + 1} (문제 #{bookmark.questionId})
+              </p>
+            </div>
+            <button
+              onClick={handleResumeBookmark}
+              className="shrink-0 bg-emerald-500 text-white font-bold text-xs px-3 py-2 rounded-xl active:scale-95 transition-transform"
+            >
+              이어풀기
+            </button>
+            <button
+              onClick={clearBookmark}
+              className="shrink-0 w-8 h-8 flex items-center justify-center rounded-xl bg-slate-100 text-slate-400 text-sm"
+              title="책갈피 삭제"
+            >
+              ✕
+            </button>
+          </div>
+        )}
 
         {/* 모드 탭 */}
         <div className="bg-white rounded-2xl p-1.5 flex gap-1 shadow-sm">

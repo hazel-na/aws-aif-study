@@ -42,6 +42,9 @@ export default function QuizScreen() {
   const scrappedQuestions = useStore(s => s.scrappedQuestions);
   const settings = useStore(s => s.settings);
   const endSession = useStore(s => s.endSession);
+  const bookmark = useStore(s => s.bookmark);
+  const setBookmark = useStore(s => s.setBookmark);
+  const clearBookmark = useStore(s => s.clearBookmark);
 
   const question = getCurrentQuestion();
 
@@ -76,6 +79,14 @@ export default function QuizScreen() {
   const isScrapped = scrappedQuestions.includes(question.id);
   const { sessionQuestionIds, currentIndex, startTime, timeLimit, mode } = session;
   const totalInSession = sessionQuestionIds.length;
+  const isBookmarked = bookmark
+    && bookmark.mode === mode
+    && bookmark.questionId === question.id;
+
+  const handleToggleBookmark = () => {
+    if (isBookmarked) clearBookmark();
+    else setBookmark();
+  };
 
   const handleSelect = (key) => {
     if (submitted) return;
@@ -149,8 +160,15 @@ export default function QuizScreen() {
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
           <Timer startTime={startTime} timeLimit={timeLimit} />
+          <button
+            onClick={handleToggleBookmark}
+            className={`w-9 h-9 flex items-center justify-center rounded-xl text-lg transition-transform active:scale-90 ${isBookmarked ? 'bg-emerald-100' : ''}`}
+            title={isBookmarked ? '책갈피 해제' : '이 문제에 책갈피 저장'}
+          >
+            {isBookmarked ? '📑' : '🔖'}
+          </button>
           <button
             onClick={() => toggleScrapped(question.id)}
             className="w-9 h-9 flex items-center justify-center rounded-xl text-xl transition-transform active:scale-90"
