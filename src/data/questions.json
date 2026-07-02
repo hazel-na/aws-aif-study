@@ -11938,22 +11938,22 @@
       {
         "key": "A",
         "enText": "Amazon Bedrock playgrounds",
-        "koText": ""
+        "koText": "Amazon Bedrock 플레이그라운드"
       },
       {
         "key": "B",
         "enText": "Amazon SageMaker Clarify",
-        "koText": ""
+        "koText": "Amazon SageMaker Clarify"
       },
       {
         "key": "C",
         "enText": "Amazon Bedrock Guardrails",
-        "koText": ""
+        "koText": "Amazon Bedrock Guardrails(가드레일)"
       },
       {
         "key": "D",
         "enText": "Amazon SageMaker Jumpstart",
-        "koText": ""
+        "koText": "Amazon SageMaker JumpStart"
       }
     ],
     "koreanQuestion": "한 회사가 LLM을 사용해 온라인 튜터링 애플리케이션을 개발하고 있습니다. 회사는 LLM에 구성 가능한 안전장치를 적용해 표준 안전 규칙을 따르도록 해야 합니다.이 요구사항을 가장 적은 노력으로 충족하는 방법은 무엇입니까?",
@@ -11971,22 +11971,22 @@
       {
         "key": "A",
         "enText": "Nova Lite",
-        "koText": ""
+        "koText": "Nova Lite"
       },
       {
         "key": "B",
         "enText": "Nova Pro",
-        "koText": ""
+        "koText": "Nova Pro"
       },
       {
         "key": "C",
         "enText": "Nova Canvas",
-        "koText": ""
+        "koText": "Nova Canvas"
       },
       {
         "key": "D",
         "enText": "Nova Reel",
-        "koText": ""
+        "koText": "Nova Reel"
       }
     ],
     "koreanQuestion": "한 회사가 Amazon Bedrock의 Amazon Nova 모델을 검토 중입니다. 다국어를 지원하는 멀티모달 모델이 필요합니다.이 요구를 가장 비용 효율적으로 충족하는 모델은 무엇입니까?",
@@ -12004,22 +12004,22 @@
       {
         "key": "A",
         "enText": "Fine-tune the FM to avoid harmful responses.",
-        "koText": ""
+        "koText": "유해한 응답을 피하도록 FM을 미세 조정(파인튜닝)한다."
       },
       {
         "key": "B",
         "enText": "Use Amazon Bedrock Guardrails content filters and denied topics.",
-        "koText": ""
+        "koText": "Amazon Bedrock Guardrails의 콘텐츠 필터와 거부 주제(denied topics)를 사용한다."
       },
       {
         "key": "C",
         "enText": "Change the FM to a more secure FM.",
-        "koText": ""
+        "koText": "FM을 더 안전한 FM으로 교체한다."
       },
       {
         "key": "D",
         "enText": "Use chain-of-thought prompting to produce secure responses.",
-        "koText": ""
+        "koText": "안전한 응답을 생성하기 위해 사고 사슬(chain-of-thought) 프롬프팅을 사용한다."
       }
     ],
     "koreanQuestion": "회사가 Amazon Bedrock FM을 사용해 새로운 생성형 AI 챗봇을 개발 중입니다. 테스트 과정에서 챗봇이 프롬프트 인젝션 공격에 취약함을 발견했습니다.이 문제를 가장 적은 구현 노력으로 해결할 방법은 무엇입니까?",
@@ -12037,22 +12037,22 @@
       {
         "key": "A",
         "enText": "The process of creating new AI algorithms",
-        "koText": ""
+        "koText": "새로운 AI 알고리즘을 만드는 과정"
       },
       {
         "key": "B",
         "enText": "The use of a trained model to make predictions or decisions on unseen data",
-        "koText": ""
+        "koText": "학습된 모델을 사용하여 처음 보는 데이터에 대해 예측이나 결정을 내리는 것"
       },
       {
         "key": "C",
         "enText": "The process of combining multiple AI models into one model",
-        "koText": ""
+        "koText": "여러 AI 모델을 하나의 모델로 결합하는 과정"
       },
       {
         "key": "D",
         "enText": "The method of collecting training data for AI systems",
-        "koText": ""
+        "koText": "AI 시스템을 위한 학습 데이터를 수집하는 방법"
       }
     ],
     "koreanQuestion": "AI에서 추론(inference)이란 무엇을 의미합니까?",
@@ -12070,22 +12070,22 @@
       {
         "key": "A",
         "enText": "Prompt Management",
-        "koText": ""
+        "koText": "프롬프트 관리(Prompt Management)"
       },
       {
         "key": "B",
         "enText": "Response streaming",
-        "koText": ""
+        "koText": "응답 스트리밍(Response streaming)"
       },
       {
         "key": "C",
         "enText": "Knowledge Bases",
-        "koText": ""
+        "koText": "지식 베이스(Knowledge Bases)"
       },
       {
         "key": "D",
         "enText": "Agents",
-        "koText": ""
+        "koText": "에이전트(Agents)"
       }
     ],
     "koreanQuestion": "한 회사가 사용자 질문에 응답하는 AI 어시스턴트를 구축하려 합니다. 이 AI는 특정 데이터 소스를 평가하고 외부 API를 호출하며 응답 옵션을 생성하고 우선순위를 비교해야 합니다.이 요구사항을 충족할 수 있는 Amazon Bedrock 기능은 무엇입니까?",
@@ -12103,22 +12103,22 @@
       {
         "key": "A",
         "enText": "Hallucinations",
-        "koText": ""
+        "koText": "환각(Hallucinations)"
       },
       {
         "key": "B",
         "enText": "Nondeterminism",
-        "koText": ""
+        "koText": "비결정성(Nondeterminism)"
       },
       {
         "key": "C",
         "enText": "Accuracy",
-        "koText": ""
+        "koText": "정확도(Accuracy)"
       },
       {
         "key": "D",
         "enText": "Multimodality",
-        "koText": ""
+        "koText": "멀티모달리티(Multimodality)"
       }
     ],
     "koreanQuestion": "AI 실무자가 동일한 입력에 대해 여러 번 호출 시 서로 다른 응답을 생성하는 LLM을 관찰했습니다.이 현상은 어떤 AI 리스크에 해당합니까?",
@@ -12136,22 +12136,22 @@
       {
         "key": "A",
         "enText": "Use Amazon Bedrock Stable Diffusion 3.5 Large to generate images based on text inputs.",
-        "koText": ""
+        "koText": "Amazon Bedrock의 Stable Diffusion 3.5 Large를 사용하여 텍스트 입력을 기반으로 이미지를 생성한다."
       },
       {
         "key": "B",
         "enText": "Use Amazon Polly to create an audiobook based on story texts.",
-        "koText": ""
+        "koText": "Amazon Polly를 사용하여 이야기 텍스트를 기반으로 오디오북을 만든다."
       },
       {
         "key": "C",
         "enText": "Use Amazon Rekognition to analyze image contents and detect text attributes.",
-        "koText": ""
+        "koText": "Amazon Rekognition을 사용하여 이미지 내용을 분석하고 텍스트 속성을 감지한다."
       },
       {
         "key": "D",
         "enText": "Create a standard prompt template. Use Amazon Q Business to illustrate stories.",
-        "koText": ""
+        "koText": "표준 프롬프트 템플릿을 만들고, Amazon Q Business를 사용하여 이야기를 삽화로 표현한다."
       }
     ],
     "koreanQuestion": "회사가 AWS에서 생성형 AI 애플리케이션을 개발하고 있습니다. 이 앱은 학생들의 읽기 이해력을 높이는 데 도움을 주며, 학생들이 이야기 텍스트에 삽화를 추가할 수 있게 해야 합니다.이 요구사항을 충족하는 솔루션은 무엇입니까?",
@@ -12169,22 +12169,22 @@
       {
         "key": "A",
         "enText": "Real-time inference",
-        "koText": ""
+        "koText": "실시간 추론(Real-time inference)"
       },
       {
         "key": "B",
         "enText": "Batch transform",
-        "koText": ""
+        "koText": "배치 변환(Batch transform)"
       },
       {
         "key": "C",
         "enText": "Serverless inference",
-        "koText": ""
+        "koText": "서버리스 추론(Serverless inference)"
       },
       {
         "key": "D",
         "enText": "Asynchronous inference",
-        "koText": ""
+        "koText": "비동기 추론(Asynchronous inference)"
       }
     ],
     "koreanQuestion": "한 헬스케어 회사가 질병 발병 패턴을 파악하기 위해 작년 데이터를 분석하고 있습니다. 매월 트렌드 분석 보고서를 작성해 보건 당국에 제출해야 하며, 이번 달의 최신 데이터에 대한 인사이트도 제공해야 합니다.가장 비용 효율적인 추론 방식은 무엇입니까?",
@@ -12240,22 +12240,22 @@
       {
         "key": "A",
         "enText": "All members of the company are ISO certified.",
-        "koText": ""
+        "koText": "회사의 모든 구성원이 ISO 인증을 받았다."
       },
       {
         "key": "B",
         "enText": "All AI systems that the company uses are ISO certified.",
-        "koText": ""
+        "koText": "회사가 사용하는 모든 AI 시스템이 ISO 인증을 받았다."
       },
       {
         "key": "C",
         "enText": "All AI application team members are ISO certified.",
-        "koText": ""
+        "koText": "모든 AI 애플리케이션 팀 구성원이 ISO 인증을 받았다."
       },
       {
         "key": "D",
         "enText": "The company’s development framework is ISO certified.",
-        "koText": ""
+        "koText": "회사의 개발 프레임워크가 ISO 인증을 받았다."
       }
     ],
     "koreanQuestion": "한 회사가 AI 리스크를 관리하고 책임감 있게 AI를 사용하기 위해 ISO 인증을 획득했습니다.이 인증은 회사에 대해 무엇을 의미합니까?",
@@ -12307,22 +12307,22 @@
       {
         "key": "A",
         "enText": "Unsupervised learning",
-        "koText": ""
+        "koText": "비지도 학습(Unsupervised learning)"
       },
       {
         "key": "B",
         "enText": "Supervised learning",
-        "koText": ""
+        "koText": "지도 학습(Supervised learning)"
       },
       {
         "key": "C",
         "enText": "Reinforcement learning",
-        "koText": ""
+        "koText": "강화 학습(Reinforcement learning)"
       },
       {
         "key": "D",
         "enText": "Semi-supervised learning",
-        "koText": ""
+        "koText": "준지도 학습(Semi-supervised learning)"
       }
     ],
     "koreanQuestion": "심장병 위험을 예측하기 위해 환자 데이터를 사용하는 모델을 개발 중입니다.데이터셋에는 심장병 유무(타깃 값) 이 포함되어 있습니다.이 경우 어떤 머신러닝 기법이 적절합니까?",
@@ -12370,22 +12370,22 @@
       {
         "key": "A",
         "enText": "Data de-identification",
-        "koText": ""
+        "koText": "데이터 비식별화(De-identification)"
       },
       {
         "key": "B",
         "enText": "Data quality standards",
-        "koText": ""
+        "koText": "데이터 품질 표준"
       },
       {
         "key": "C",
         "enText": "Data retention",
-        "koText": ""
+        "koText": "데이터 보존(Retention)"
       },
       {
         "key": "D",
         "enText": "Log storage",
-        "koText": ""
+        "koText": "로그 저장"
       }
     ],
     "koreanQuestion": "한 회사가 데이터 저장 및 삭제에 대한 정책을 가지고 있습니다.이것은 어떤 데이터 거버넌스 전략입니까?",
@@ -12403,22 +12403,22 @@
       {
         "key": "A",
         "enText": "Create a deep neural network by using the images as input.",
-        "koText": ""
+        "koText": "이미지를 입력으로 사용하여 심층 신경망(deep neural network)을 만든다."
       },
       {
         "key": "B",
         "enText": "Create an AWS Lambda function to perform the transformations.",
-        "koText": ""
+        "koText": "변환 작업을 수행하는 AWS Lambda 함수를 만든다."
       },
       {
         "key": "C",
         "enText": "Use an Amazon Bedrock large language model (LLM) with a high temperature.",
-        "koText": ""
+        "koText": "temperature 값이 높은 Amazon Bedrock 대규모 언어 모델(LLM)을 사용한다."
       },
       {
         "key": "D",
         "enText": "Use AWS Glue Data Quality to make corrections to each image.",
-        "koText": ""
+        "koText": "AWS Glue Data Quality를 사용하여 각 이미지를 수정한다."
       }
     ],
     "koreanQuestion": "이미지 집합에 대해 전치(Transpose) 및 회전(Rotate) 과 같은 수치 변환을 적용해야 합니다.가장 운영 효율적인 방식은 무엇입니까?",
@@ -12436,22 +12436,22 @@
       {
         "key": "A",
         "enText": "Hallucinations",
-        "koText": ""
+        "koText": "환각(Hallucinations)"
       },
       {
         "key": "B",
         "enText": "Nondeterminism",
-        "koText": ""
+        "koText": "비결정성(Nondeterminism)"
       },
       {
         "key": "C",
         "enText": "Accuracy",
-        "koText": ""
+        "koText": "정확도(Accuracy)"
       },
       {
         "key": "D",
         "enText": "Multimodality",
-        "koText": ""
+        "koText": "멀티모달리티(Multimodality)"
       }
     ],
     "koreanQuestion": "AI 실무자가 동일한 입력을 여러 번 실행했을 때 LLM이 매번 다른 결과를 생성하는 것을 발견했습니다.이는 어떤 AI 리스크에 해당합니까?",
@@ -12469,22 +12469,22 @@
       {
         "key": "A",
         "enText": "A variational autoencoder (VAE) model",
-        "koText": ""
+        "koText": "변분 오토인코더(VAE) 모델"
       },
       {
         "key": "B",
         "enText": "A transformer-based model",
-        "koText": ""
+        "koText": "트랜스포머(Transformer) 기반 모델"
       },
       {
         "key": "C",
         "enText": "A diffusion model",
-        "koText": ""
+        "koText": "확산(Diffusion) 모델"
       },
       {
         "key": "D",
         "enText": "A generative adversarial network (GAN) model",
-        "koText": ""
+        "koText": "생성적 적대 신경망(GAN) 모델"
       }
     ],
     "koreanQuestion": "전자상거래 사이트에서 사용할 상품 설명을 자동 생성하는 AI 애플리케이션을 개발 중입니다.문체와 어조가 일관된 문단 단위의 텍스트를 하루 수천 개 생성해야 합니다.어떤 생성 모델이 적합합니까?",
@@ -12502,22 +12502,22 @@
       {
         "key": "A",
         "enText": "The model is underfit.",
-        "koText": ""
+        "koText": "모델이 과소적합(underfit)되었다."
       },
       {
         "key": "B",
         "enText": "The model requires prompt engineering.",
-        "koText": ""
+        "koText": "모델에 프롬프트 엔지니어링이 필요하다."
       },
       {
         "key": "C",
         "enText": "The model is biased.",
-        "koText": ""
+        "koText": "모델이 편향(biased)되었다."
       },
       {
         "key": "D",
         "enText": "The model is overfit.",
-        "koText": ""
+        "koText": "모델이 과대적합(overfit)되었다."
       }
     ],
     "koreanQuestion": "AI 실무자가 모델을 훈련시킨 결과,훈련 데이터에서는 성능이 좋지만 평가 데이터에서는 성능이 나쁩니다.이 문제의 가장 가능성 높은 원인은 무엇입니까?",
