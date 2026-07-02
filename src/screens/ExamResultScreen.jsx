@@ -13,6 +13,7 @@ export default function ExamResultScreen() {
   const navigate = useNavigate();
   const result = useStore(s => s.examResult);
   const startExam = useStore(s => s.startExam);
+  const startSessionWithIds = useStore(s => s.startSessionWithIds);
   const [filter, setFilter] = useState('wrong'); // 'wrong' | 'all'
   const [reviewId, setReviewId] = useState(null);
 
@@ -34,6 +35,10 @@ export default function ExamResultScreen() {
   const handleRetry = () => {
     startExam();
     navigate('/exam', { replace: true });
+  };
+
+  const handleReviewWrong = () => {
+    if (startSessionWithIds(wrong, 'wrong')) navigate('/quiz');
   };
 
   return (
@@ -135,6 +140,14 @@ export default function ExamResultScreen() {
 
         {/* CTA */}
         <div className="space-y-3 pt-2">
+          {wrong.length > 0 && (
+            <button
+              onClick={handleReviewWrong}
+              className="w-full h-14 bg-red-500 text-white font-extrabold rounded-2xl text-sm shadow-lg active:scale-[0.97] transition-all"
+            >
+              ❌ 틀린 문제만 다시 풀기 ({wrong.length}개)
+            </button>
+          )}
           <button
             onClick={handleRetry}
             className="w-full h-14 bg-indigo-500 text-white font-extrabold rounded-2xl text-sm shadow-lg active:scale-[0.97] transition-all"
@@ -156,6 +169,8 @@ export default function ExamResultScreen() {
           question={reviewQuestion}
           userAnswer={answers[reviewId]}
           isCorrect={checkCorrect(reviewQuestion, answers[reviewId])}
+          showStem
+          nextLabel="닫기"
           onNext={() => setReviewId(null)}
           onClose={() => setReviewId(null)}
         />

@@ -116,7 +116,7 @@ function TheoryTopicBlock({ chapter, topic, defaultOpen = false }) {
   );
 }
 
-export default function BottomSheet({ question, userAnswer, isCorrect, onNext, onClose }) {
+export default function BottomSheet({ question, userAnswer, isCorrect, onNext, onClose, showStem = false, nextLabel = '다음 문제 →' }) {
   const [visible, setVisible] = useState(false);
   const [dragY, setDragY] = useState(0);      // 아래로 드래그한 거리(px)
   const [dragging, setDragging] = useState(false);
@@ -245,6 +245,53 @@ export default function BottomSheet({ question, userAnswer, isCorrect, onNext, o
 
         {/* 스크롤 영역 */}
         <div className="overflow-y-auto flex-1 px-4 pb-4 space-y-4">
+
+          {/* 문제 전문 + 전체 선택지 (모의고사 리뷰 등에서 사용) */}
+          {showStem && (
+            <div className="space-y-3">
+              <div className="bg-white border border-slate-200 rounded-2xl p-4">
+                <p className="text-xs text-slate-400 mb-1.5">문제 #{question.id}</p>
+                <p className="text-sm font-semibold text-slate-800 leading-relaxed">
+                  {question.koreanQuestion || question.englishQuestion}
+                </p>
+                {question.englishQuestion && question.koreanQuestion && (
+                  <p className="text-xs text-slate-400 leading-relaxed mt-2 pt-2 border-t border-slate-100">
+                    {question.englishQuestion}
+                  </p>
+                )}
+              </div>
+
+              {question.choices?.length > 0 && (
+                <div className="space-y-2">
+                  {question.choices.map((c) => {
+                    const isCorrectChoice = correctKeys.includes(c.key);
+                    const isUserChoice = userKeys.includes(c.key);
+                    let cls = 'border-slate-200 bg-white';
+                    if (isCorrectChoice) cls = 'border-emerald-300 bg-emerald-50';
+                    else if (isUserChoice) cls = 'border-red-300 bg-red-50';
+                    return (
+                      <div key={c.key} className={`rounded-xl border px-3 py-2.5 flex items-start gap-2.5 ${cls}`}>
+                        <span className={`shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                          isCorrectChoice ? 'bg-emerald-500 text-white'
+                            : isUserChoice ? 'bg-red-500 text-white'
+                            : 'bg-slate-100 text-slate-500'}`}>
+                          {c.key}
+                        </span>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm text-slate-800 leading-snug">{c.enText}</p>
+                          {c.koText && <p className="text-xs text-slate-500 mt-0.5 leading-snug">{c.koText}</p>}
+                        </div>
+                        {isCorrectChoice && <span className="shrink-0 text-xs font-bold text-emerald-600">✓ 정답</span>}
+                        {isUserChoice && !isCorrectChoice && <span className="shrink-0 text-xs font-bold text-red-500">내 선택</span>}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+
+              <div className="h-px bg-slate-200" />
+            </div>
+          )}
 
           {isReveal ? (
             /* ── 매칭형 / 순서 배열형 ── */
@@ -415,7 +462,7 @@ export default function BottomSheet({ question, userAnswer, isCorrect, onNext, o
             onClick={onNext}
             className="w-full h-13 bg-sky-500 hover:bg-sky-600 active:bg-sky-700 text-white font-extrabold rounded-2xl text-sm transition-colors"
           >
-            다음 문제 →
+            {nextLabel}
           </button>
         </div>
       </div>

@@ -135,6 +135,25 @@ const useStore = create(
         });
       },
 
+      // ── 특정 문제 id 목록으로 학습 세션 시작 (예: 모의고사 오답만 다시 풀기)
+      startSessionWithIds: (ids, mode = 'wrong') => {
+        const { settings } = get();
+        const validIds = getValidIds();
+        let list = ids.filter(id => validIds.includes(id));
+        if (list.length === 0) return false;
+        if (settings.randomOrder) list = shuffle(list);
+        set({
+          currentSession: {
+            mode,
+            sessionQuestionIds: list,
+            currentIndex: 0,
+            startTime: Date.now(),
+            timeLimit: 5940,
+          },
+        });
+        return true;
+      },
+
       // ── 세션 재시작 (무한 루프)
       restartSession: () => {
         const session = get().currentSession;
