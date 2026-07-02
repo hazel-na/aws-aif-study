@@ -39,6 +39,8 @@ export default function ExamScreen() {
   const finishExam = useStore(s => s.finishExam);
   const endExam = useStore(s => s.endExam);
   const settings = useStore(s => s.settings);
+  const toggleScrapped = useStore(s => s.toggleScrapped);
+  const scrappedQuestions = useStore(s => s.scrappedQuestions);
 
   const [showNavigator, setShowNavigator] = useState(false);
   const [showSubmitConfirm, setShowSubmitConfirm] = useState(false);
@@ -58,6 +60,7 @@ export default function ExamScreen() {
   const { questionIds, answers, currentIndex, startTime, timeLimit } = exam;
   const total = questionIds.length;
   const answeredCount = questionIds.filter(id => answers[id] != null).length;
+  const isScrapped = scrappedQuestions.includes(question.id);
 
   const answerType = getAnswerType(question);
   const isMulti = answerType === 'multi';
@@ -109,8 +112,15 @@ export default function ExamScreen() {
             Q.{currentIndex + 1} <span className="text-slate-400 font-normal">/ {total}</span>
           </p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
           <ExamTimer startTime={startTime} timeLimit={timeLimit} onExpire={handleSubmit} />
+          <button
+            onClick={() => toggleScrapped(question.id)}
+            className="w-9 h-9 flex items-center justify-center rounded-xl text-xl transition-transform active:scale-90"
+            title={isScrapped ? '스크랩 해제' : '스크랩(별표)'}
+          >
+            {isScrapped ? '⭐' : '☆'}
+          </button>
         </div>
       </div>
 

@@ -170,6 +170,7 @@ export default function ExamResultScreen() {
           userAnswer={answers[reviewId]}
           isCorrect={checkCorrect(reviewQuestion, answers[reviewId])}
           showStem
+          showScrap
           nextLabel="닫기"
           onNext={() => setReviewId(null)}
           onClose={() => setReviewId(null)}

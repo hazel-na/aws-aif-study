@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Tooltip from './Tooltip';
 import THEORY from '../data/theoryContent';
+import useStore from '../store/useStore';
 
 // 챕터 색상 매핑
 const CHAPTER_COLORS = {
@@ -116,7 +117,10 @@ function TheoryTopicBlock({ chapter, topic, defaultOpen = false }) {
   );
 }
 
-export default function BottomSheet({ question, userAnswer, isCorrect, onNext, onClose, showStem = false, nextLabel = '다음 문제 →' }) {
+export default function BottomSheet({ question, userAnswer, isCorrect, onNext, onClose, showStem = false, nextLabel = '다음 문제 →', showScrap = false }) {
+  const toggleScrapped = useStore(s => s.toggleScrapped);
+  const scrappedQuestions = useStore(s => s.scrappedQuestions);
+  const isScrapped = scrappedQuestions.includes(question.id);
   const [visible, setVisible] = useState(false);
   const [dragY, setDragY] = useState(0);      // 아래로 드래그한 거리(px)
   const [dragging, setDragging] = useState(false);
@@ -232,6 +236,18 @@ export default function BottomSheet({ question, userAnswer, isCorrect, onNext, o
           className="flex justify-center items-center pt-3 pb-3 relative shrink-0 cursor-grab active:cursor-grabbing touch-none select-none"
         >
           <div className="w-12 h-1.5 rounded-full bg-slate-300" />
+          {showScrap && (
+            <button
+              onClick={() => toggleScrapped(question.id)}
+              onTouchStart={(e) => e.stopPropagation()}
+              onMouseDown={(e) => e.stopPropagation()}
+              className="absolute left-4 h-8 px-2.5 flex items-center gap-1 rounded-full bg-amber-50 text-amber-600 text-xs font-bold hover:bg-amber-100 active:scale-90 transition-all"
+              aria-label="스크랩"
+            >
+              <span className="text-base leading-none">{isScrapped ? '⭐' : '☆'}</span>
+              {isScrapped ? '스크랩됨' : '스크랩'}
+            </button>
+          )}
           <button
             onClick={onClose}
             onTouchStart={(e) => e.stopPropagation()}

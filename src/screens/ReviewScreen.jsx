@@ -95,6 +95,9 @@ function TheoryBlock({ chapter, topic }) {
 function ReviewCard({ question, progressEntry, index }) {
   const [expanded, setExpanded] = useState(false);
   const relatedTopics = findRelatedTopics(question);
+  const toggleScrapped = useStore(s => s.toggleScrapped);
+  const scrappedQuestions = useStore(s => s.scrappedQuestions);
+  const isScrapped = scrappedQuestions.includes(question.id);
 
   const isCorrect = progressEntry?.isCorrect;
   const rawUserAnswer = progressEntry?.userAnswer;
@@ -137,6 +140,13 @@ function ReviewCard({ question, progressEntry, index }) {
             {question.koreanQuestion || question.englishQuestion}
           </p>
         </div>
+        <button
+          onClick={(e) => { e.stopPropagation(); toggleScrapped(question.id); }}
+          className="w-8 h-8 flex items-center justify-center rounded-lg text-lg shrink-0 transition-transform active:scale-90"
+          title={isScrapped ? '스크랩 해제' : '스크랩(별표)'}
+        >
+          {isScrapped ? '⭐' : '☆'}
+        </button>
         <span className="text-slate-300 text-sm shrink-0">{expanded ? '▲' : '▼'}</span>
       </div>
 
