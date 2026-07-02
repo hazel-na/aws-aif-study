@@ -7394,7 +7394,7 @@
       {
         "key": "B",
         "enText": "On-demand throughput on Bedrock",
-        "koText": ""
+        "koText": "Amazon Bedrock 온디맨드(On-demand) 처리량"
       },
       {
         "key": "C",
@@ -7404,7 +7404,7 @@
       {
         "key": "D",
         "enText": "Provisioned Throughput on Bedrock",
-        "koText": ""
+        "koText": "Amazon Bedrock 프로비저닝(Provisioned) 처리량"
       }
     ],
     "koreanQuestion": "Fine-tuning된 모델이 꾸준한 요청을 처리해야 할 때, 가장 비용 효율적인 배포 방식은?",
@@ -9126,12 +9126,12 @@
       {
         "key": "A",
         "enText": "Analyze cost and usage reports in AWS Cost Explorer.",
-        "koText": ""
+        "koText": "AWS Cost Explorer에서 비용·사용 보고서 분석"
       },
       {
         "key": "B",
         "enText": "Download AWS security and compliance documents from AWS Artifact.",
-        "koText": ""
+        "koText": "AWS Artifact에서 보안·규정 준수 문서 다운로드"
       },
       {
         "key": "C",
